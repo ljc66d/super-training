@@ -2,6 +2,8 @@
 
 面向力量训练、CrossFit、Hyrox、跑步、骑行、游泳、徒步、球类、格斗等运动人群的训练管理 App，覆盖「训练记录 → 饮食管理 → 数据复盘 → 社区分享」全流程。
 
+> 端差异说明：**微信小程序端暂未实现社区功能**；社区与社交（动态/关注/私信等）目前由 React Native 端（Web/App）配合后端 API 提供。
+
 ## 数据底座
 
 | 数据源 | 内容 | 状态 |
@@ -79,6 +81,8 @@ psql -U postgres -d super_training -f backend/sql/init.sql
 │   └── requirements.txt
 ├── mobile/                  # React Native 前端
 │   └── src/                 # 页面 / 组件 / API 客户端 / 上下文 / 主题
+├── miniprogram/             # 微信小程序端（TypeScript，社区功能暂未实现）
+│   └── pages/               # 训练/饮食/统计/计划/纠错/教练/成就等页面
 ├── venv_hrnet/              # Python 虚拟环境
 └── data/                    # 数据底座（动作库 + 食材库）
 ```
@@ -123,7 +127,9 @@ psql -U postgres -d super_training -f backend/sql/init.sql
 - 专项备赛模板（力量举 / Hyrox / CrossFit）
 - 动作骨骼关键点纠错（13 个动作，关节角度 + 中文纠正建议 + 评分）
 
-### 社区与社交
+### 社区与社交（RN / Web 端）
+> 微信小程序端暂未实现本节功能，仅 React Native 端（Web/App）可用。
+
 - 动态发布（图文 / 纯文字 / 数据打卡），点赞、评论、图片
 - 关注 / 粉丝 / 朋友 / 同城、私信
 - 社区分享管理（「我的 → 社区分享」）：可见性（公开/仅自己）+ 删除 + 点赞人与评论详情
