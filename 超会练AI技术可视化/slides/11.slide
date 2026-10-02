@@ -1,0 +1,44 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 16, background: '#1E4FA8' }} />
+    <Box style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 80, paddingRight: 80, gap: 60 }}>
+      <Box style={{ width: 360, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
+        <Text style={{ fontSize: 180, fontWeight: 'bold', color: '#0E3F8C' }}>3</Text>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1A2230' }}>层可视化</Text>
+        <Text style={{ fontSize: 17, color: '#8B97A8', textAlign: 'center' }}>架构 · 过程 · 模型差异</Text>
+      </Box>
+      <Box style={{ flex: 1, flexDirection: 'column', gap: 28 }}>
+        <Box style={{ flexDirection: 'row', gap: 20, alignItems: 'flex-start' }}>
+          <Box style={{ width: 48, height: 48, background: '#1E4FA8', borderRadius: 24, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFFFFF' }}>1</Text>
+          </Box>
+          <Box style={{ flex: 1, flexDirection: 'column', gap: 6 }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>过程可解释</Text>
+            <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6 }}>抽帧、姿态估计、营养计算每一步都有据可查，不是端到端黑盒</Text>
+          </Box>
+        </Box>
+        <Box style={{ flexDirection: 'row', gap: 20, alignItems: 'flex-start' }}>
+          <Box style={{ width: 48, height: 48, background: '#1E4FA8', borderRadius: 24, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFFFFF' }}>2</Text>
+          </Box>
+          <Box style={{ flex: 1, flexDirection: 'column', gap: 6 }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>模型有选型深度</Text>
+            <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6 }}>动作纠错「主 + 回退」、食物识别「云 + 端」，处处是工程化权衡</Text>
+          </Box>
+        </Box>
+        <Box style={{ flexDirection: 'row', gap: 20, alignItems: 'flex-start' }}>
+          <Box style={{ width: 48, height: 48, background: '#1E4FA8', borderRadius: 24, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#FFFFFF' }}>3</Text>
+          </Box>
+          <Box style={{ flex: 1, flexDirection: 'column', gap: 6 }}>
+            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>降级容错可靠</Text>
+            <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6 }}>离线可用、云失败自动兜底，产品落地稳健，不依赖单一模型</Text>
+          </Box>
+        </Box>
+        <Box style={{ background: '#F0F5FC', borderRadius: 8, paddingLeft: 20, paddingRight: 20, paddingTop: 14, paddingBottom: 14 }}>
+          <Text style={{ fontSize: 18, color: '#0E3F8C', lineHeight: 1.5, fontWeight: 'bold' }}>可视化是技术可信度的放大器——让评委「看到」而非「听说」</Text>
+        </Box>
+      </Box>
+    </Box>
+  </Box>
+</Slide>

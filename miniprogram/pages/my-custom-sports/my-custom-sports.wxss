@@ -1,0 +1,15 @@
+.add-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.list-card {
+  padding: 0 28rpx;
+}
+
+.sport-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+}

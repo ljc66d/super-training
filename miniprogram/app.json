@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/login/login",
+    "pages/training/training",
+    "pages/session-list/session-list",
+    "pages/training-detail/training-detail",
+    "pages/diet/diet",
+    "pages/diet-calendar/diet-calendar",
+    "pages/food-picker/food-picker",
+    "pages/stats/stats",
+    "pages/profile/profile",
+    "pages/plan/plan",
+    "pages/exercise-library/exercise-library",
+    "pages/exercise-detail/exercise-detail",
+    "pages/form-check/form-check",
+    "pages/achievement/achievement",
+    "pages/coach/coach",
+    "pages/body-metrics/body-metrics",
+    "pages/my-custom-sports/my-custom-sports",
+    "pages/webview/webview"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#0D0E10",
+    "navigationBarTitleText": "超会练",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0D0E10",
+    "backgroundColorTop": "#0D0E10",
+    "backgroundColorBottom": "#0D0E10"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#5C6570",
+    "selectedColor": "#FF4D2E",
+    "backgroundColor": "#14161A",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/home/home", "text": "首页" },
+      { "pagePath": "pages/training/training", "text": "训练" },
+      { "pagePath": "pages/diet/diet", "text": "饮食" },
+      { "pagePath": "pages/profile/profile", "text": "我的" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

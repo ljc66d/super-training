@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "超会练",
+    "slug": "super-training",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0EA5E9"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.supertraining.app"
+    },
+    "android": {
+      "package": "com.supertraining.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0EA5E9"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font",
+      ["expo-build-properties", {
+        "android": {
+          "usesCleartextTraffic": true
+        }
+      }]
+    ]
+  }
+}

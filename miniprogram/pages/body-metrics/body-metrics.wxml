@@ -1,0 +1,54 @@
+<view class="page">
+  <!-- 最新数据 -->
+  <view class="card">
+    <view class="card-title"><text> 最新身体数据</text></view>
+    <view wx:if="{{latest}}" class="latest-row">
+      <view class="lstat">
+        <text class="lstat-value text-primary">{{latest.weight_text}}</text>
+        <text class="lstat-label">体重 kg</text>
+      </view>
+      <view class="lstat">
+        <text class="lstat-value text-accent">{{latest.fat_text}}</text>
+        <text class="lstat-label">体脂率</text>
+      </view>
+      <view class="lstat">
+        <text class="lstat-value text-danger">{{latest.hr_text}}</text>
+        <text class="lstat-label">静息心率</text>
+      </view>
+      <view class="lstat">
+        <text class="lstat-value text-success">{{latest.tdee_text}}</text>
+        <text class="lstat-label">TDEE</text>
+      </view>
+    </view>
+    <view wx:else class="empty-inline">暂无记录，先记录一次身体数据吧</view>
+  </view>
+
+  <!-- 记录 -->
+  <view class="card">
+    <view class="card-title"><text>记录身体数据</text></view>
+    <picker mode="date" value="{{date}}" bindchange="onDateChange">
+      <view class="input picker-input"> {{date}}</view>
+    </picker>
+    <input class="input input-gap" type="digit" placeholder="体重（kg）" placeholder-class="input-placeholder"
+           value="{{weight}}" bindinput="onWeightInput" />
+    <input class="input input-gap" type="digit" placeholder="体脂率（%，可选）" placeholder-class="input-placeholder"
+           value="{{bodyFat}}" bindinput="onFatInput" />
+    <input class="input input-gap" type="digit" placeholder="静息心率（bpm，可选）" placeholder-class="input-placeholder"
+           value="{{restingHeart}}" bindinput="onHeartInput" />
+    <view class="btn btn-primary btn-gap" loading="{{saving}}" bindtap="onSave">保存记录</view>
+    <text class="form-tip">记录体重/体脂后会自动更新 BMR / TDEE；同一天数据会自动合并</text>
+  </view>
+
+  <!-- 历史 -->
+  <view class="card">
+    <view class="card-title"><text>历史记录</text></view>
+    <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+    <view wx:if="{{!loading && metrics.length === 0}}" class="empty-inline">暂无历史数据</view>
+    <view wx:for="{{metrics}}" wx:key="record_date" class="his-item">
+      <text class="his-date">{{item.record_date}}</text>
+      <text class="his-val"> {{item.weight_text}} kg</text>
+      <text class="his-val text-muted"> {{item.fat_text}}</text>
+      <text class="his-val text-danger">❤ {{item.hr_text}}</text>
+    </view>
+  </view>
+</view>

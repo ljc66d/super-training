@@ -1,0 +1,68 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 56, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>AI 动作纠错 · 模型对比</Text>
+      <Text style={{ fontSize: 14, color: '#E8EFF8' }}>超会练 · 智能运动健康</Text>
+    </Box>
+    <Box style={{ flex: 1, paddingLeft: 40, paddingRight: 40, paddingTop: 24, paddingBottom: 12, flexDirection: 'row', gap: 24 }}>
+      <Box style={{ flex: 3 }}>
+        <Table
+          style={{ width: '100%', height: '100%' }}
+          defaultTextStyle={{ fontSize: 16, textAlign: 'center', color: '#1A2230' }}
+          defaultCellStyle={{
+            border: {
+              left: { width: 1, color: '#D6DCE5' },
+              right: { width: 1, color: '#D6DCE5' },
+              top: { width: 1, color: '#D6DCE5' },
+              bottom: { width: 1, color: '#D6DCE5' },
+            },
+          }}
+          cells={[
+            [
+              { text: '维度', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+              { text: 'HRNet-W48', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+              { text: 'YOLOv8-Pose', textStyle: { bold: true, color: '#FFFFFF' }, cellStyle: { background: { color: '#1E4FA8' } } },
+            ],
+            [
+              { text: '角色', textStyle: { bold: true, color: '#0E3F8C' } },
+              '高精度主模型',
+              '快速回退模型',
+            ],
+            [
+              { text: '关键点精度', textStyle: { bold: true, color: '#0E3F8C' }, cellStyle: { background: { color: '#F0F5FC' } } },
+              { text: '高 · 保持高分辨率特征', cellStyle: { background: { color: '#F0F5FC' } } },
+              { text: '中 · 单阶段端到端', cellStyle: { background: { color: '#F0F5FC' } } },
+            ],
+            [
+              { text: '推理速度', textStyle: { bold: true, color: '#0E3F8C' } },
+              '慢 · 需 GPU',
+              '快 · CPU 可跑',
+            ],
+            [
+              { text: '当前部署', textStyle: { bold: true, color: '#0E3F8C' }, cellStyle: { background: { color: '#F0F5FC' } } },
+              { text: '本地训练 / 评估', cellStyle: { background: { color: '#F0F5FC' } } },
+              { text: '线上已部署 onnx', cellStyle: { background: { color: '#F0F5FC' } } },
+            ],
+          ]}
+        />
+      </Box>
+      <Box style={{ flex: 2, background: '#F7F9FC', borderRadius: 8, padding: 28, flexDirection: 'column', gap: 20, border: '1px solid #D6DCE5' }}>
+        <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#0E3F8C' }}>工程化选型</Text>
+        <Box style={{ width: 48, height: 4, background: '#1E4FA8' }} />
+        <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.7 }}>
+          精度优先时走 <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>HRNet</span> 高精度主模型；追求响应速度时降级 <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>YOLOv8-Pose</span>
+        </Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.7, fontWeight: 'bold' }}>
+          「主 + 回退」混合策略——不是单一模型，更不是调 API 交差
+        </Text>
+        <Box style={{ marginTop: 'auto', background: '#E8EFF8', borderRadius: 6, paddingLeft: 16, paddingRight: 16, paddingTop: 12, paddingBottom: 12 }}>
+          <Text style={{ fontSize: 16, color: '#1E4FA8', lineHeight: 1.5 }}>依据动作复杂度与设备算力动态选择，兼顾精度与实时性</Text>
+        </Box>
+      </Box>
+    </Box>
+    <Box style={{ width: '100%', height: 40, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+      <Text style={{ fontSize: 14, color: '#8B97A8' }}>超会练 · 智能运动健康</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8' }}>07 / 12</Text>
+    </Box>
+  </Box>
+</Slide>

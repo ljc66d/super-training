@@ -1,0 +1,127 @@
+.level-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.level-left {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.level-badge {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(135deg, #FF4D2E, #D93A1E);
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+}
+
+.level-sub {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 6rpx;
+  display: block;
+}
+
+.badge-stats {
+  display: flex;
+  gap: 12rpx;
+}
+
+.bstat {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+  background: #1A1D22;
+  border-radius: 16rpx;
+  padding: 20rpx 8rpx;
+}
+
+.bstat-icon {
+  font-size: 32rpx;
+}
+
+.bstat-num {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.ach-card {
+  padding: 24rpx 28rpx;
+}
+
+.ach-locked {
+  opacity: 0.75;
+}
+
+.ach-left {
+  display: flex;
+  gap: 20rpx;
+}
+
+.ach-icon {
+  font-size: 56rpx;
+}
+
+.ach-info {
+  flex: 1;
+}
+
+.ach-title {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.ach-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+}
+
+.ach-desc {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 6rpx;
+  display: block;
+}
+
+.ach-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 14rpx;
+}
+
+.ach-progress-track {
+  flex: 1;
+  height: 10rpx;
+  background: #1A1D22;
+  border-radius: 999rpx;
+  overflow: hidden;
+}
+
+.ach-progress-fill {
+  height: 100%;
+  border-radius: 999rpx;
+}
+
+.ach-progress-text {
+  font-size: 20rpx;
+  color: #5C6570;
+}

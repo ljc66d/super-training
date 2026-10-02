@@ -1,0 +1,20 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 16, background: '#1E4FA8' }} />
+    <Box style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 100, paddingRight: 100 }}>
+      <Box style={{ width: 420, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 200, fontWeight: 'bold', color: '#0E3F8C' }}>02</Text>
+      </Box>
+      <Box style={{ flex: 1, flexDirection: 'column', gap: 24 }}>
+        <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#1A2230' }}>AI 动作纠错</Text>
+        <Box style={{ width: 64, height: 4, background: '#1E4FA8' }} />
+        <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.6 }}>
+          从视频到评分纠错的完整处理链：<span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>抽帧 → 姿态估计 → 关节角度 → 评估</span>
+        </Text>
+        <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.6 }}>
+          双模型选型：<span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>HRNet-W48</span> 高精度主模型 + <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>YOLOv8-Pose</span> 快速回退
+        </Text>
+      </Box>
+    </Box>
+  </Box>
+</Slide>

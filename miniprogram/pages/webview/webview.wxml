@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="card about-card">
+    <view class="about-logo">超</view>
+    <view class="about-name">超会练</view>
+    <view class="about-ver">v0.1.0 微信小程序版</view>
+    <view class="about-desc">训练数据管理：训练记录 → 饮食管理 → 数据复盘 → 训练辅助</view>
+  </view>
+
+  <view class="card">
+    <view class="menu-item" bindtap="onCopyApi">
+      <text class="menu-icon"></text>
+      <text class="menu-label">API 服务地址</text>
+      <text class="menu-value">{{apiBase}}</text>
+    </view>
+    <view class="menu-item" bindtap="onViewLogs">
+      <text class="menu-icon"></text>
+      <text class="menu-label">调试日志</text>
+      <text class="menu-value">›</text>
+    </view>
+    <view class="menu-item" bindtap="onClearCache">
+      <text class="menu-icon"></text>
+      <text class="menu-label">清除缓存</text>
+      <text class="menu-value">{{storageSize}}</text>
+    </view>
+  </view>
+
+  <view class="tip-card">
+    <text class="tip-title"> 开发联调说明</text>
+    <text class="tip-text">1. 开发阶段请在微信开发者工具「详情-本地设置」勾选「不校验合法域名」。</text>
+    <text class="tip-text">2. 正式发布需将 utils/config.ts 的 API_BASE_URL 替换为 HTTPS 备案域名，并在小程序后台配置 request 合法域名。</text>
+    <text class="tip-text">3. 微信登录需在 backend/.env 配置 WX_APPID / WX_SECRET；未配置时自动降级为账号密码登录。</text>
+  </view>
+
+  <view class="footer-tip">© 2026 超会练 · 训练数据管理</view>
+</view>

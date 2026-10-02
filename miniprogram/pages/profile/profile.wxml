@@ -1,0 +1,95 @@
+<view class="page page-tab">
+  <!-- 未登录提示 -->
+  <view class="login-required" wx:if="{{needLogin}}">
+    <text class="login-req-icon">👤</text>
+    <text class="login-req-title">登录后查看个人中心</text>
+    <text class="login-req-desc">管理个人资料、查看训练数据、设置健身目标</text>
+    <view class="login-req-btn" bindtap="goLogin">立即登录</view>
+  </view>
+
+  <block wx:else>
+  <!-- 用户信息 -->
+  <view class="user-card">
+    <view class="avatar" bindtap="onChangeAvatar">
+      <image wx:if="{{user.avatar_url && !avatarFailed}}" src="{{user.avatar_url}}" mode="aspectFill" class="avatar-img" binderror="onAvatarError" />
+      <text wx:else>{{userInitial}}</text>
+    </view>
+    <view class="user-info">
+      <view class="user-name">
+        {{user.nickname || '未登录'}}
+        <text wx:if="{{user.is_coach}}" class="badge badge-accent">教练</text>
+      </view>
+      <view class="user-meta">
+        {{user.goal_label || (user.goal || '完善画像，获取个性化建议')}}
+      </view>
+      <view class="user-id" bindtap="onCopyId">
+        <text>ID：{{user.uid || '—'}}</text>
+        <text class="user-id-copy">复制</text>
+      </view>
+    </view>
+    <view class="edit-btn" bindtap="openEdit">编辑</view>
+  </view>
+
+  <!-- 能量需求 -->
+  <view wx:if="{{energy}}" class="card">
+    <view class="card-title"><text> 能量需求</text></view>
+    <view class="energy-row">
+      <view class="energy-item">
+        <text class="energy-value text-primary">{{energy.bmr_text}}</text>
+        <text class="energy-label">BMR</text>
+      </view>
+      <view class="energy-item">
+        <text class="energy-value text-accent">{{energy.tdee_text}}</text>
+        <text class="energy-label">TDEE</text>
+      </view>
+      <view class="energy-item">
+        <text class="energy-value text-success">{{energy.target_text}}</text>
+        <text class="energy-label">摄入目标</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="card menu-card">
+    <view wx:for="{{menus}}" wx:key="label" class="menu-item" data-url="{{item.url}}" data-label="{{item.label}}" bindtap="onMenuTap">
+      <text class="menu-label">{{item.label}}</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="footer-tip">超会练 v0.1.0 · 训练数据管理</view>
+
+  <!-- 画像编辑弹窗 -->
+  <view wx:if="{{editing}}" class="mask" bindtap="onCloseEdit">
+    <view class="modal" catchtap="noop">
+      <view class="modal-title">完善画像</view>
+      <view class="form">
+        <input class="input" placeholder="昵称" placeholder-class="input-placeholder" value="{{form.nickname}}"
+               data-field="nickname" bindinput="onFormInput" />
+        <view class="gender-row">
+          <view class="gchip {{form.gender === 'male' ? 'gchip-active' : ''}}" data-value="male" bindtap="onSelectGender">男</view>
+          <view class="gchip {{form.gender === 'female' ? 'gchip-active' : ''}}" data-value="female" bindtap="onSelectGender">女</view>
+        </view>
+        <view class="row-inputs">
+          <input class="input flex-1" type="digit" placeholder="身高cm" placeholder-class="input-placeholder" value="{{form.height_cm}}"
+                 data-field="height_cm" bindinput="onFormInput" />
+          <input class="input flex-1" type="digit" placeholder="体重kg" placeholder-class="input-placeholder" value="{{form.weight_kg}}"
+                 data-field="weight_kg" bindinput="onFormInput" />
+        </view>
+        <picker mode="date" value="{{form.birthday}}" bindchange="onBirthdayChange">
+          <view class="input picker-input">{{form.birthday || '选择生日'}}</view>
+        </picker>
+        <view class="goal-wrap">
+          <view wx:for="{{goals}}" wx:key="key"
+                class="gchip {{form.goal === item.key ? 'gchip-active' : ''}}"
+                data-key="{{item.key}}" bindtap="onSelectGoal">{{item.label}}</view>
+        </view>
+      </view>
+      <view class="space-between modal-btns">
+        <view class="btn btn-ghost btn-sm" bindtap="onCloseEdit">取消</view>
+        <view class="btn btn-primary btn-sm" bindtap="onSaveProfile">保存</view>
+      </view>
+    </view>
+  </view>
+  </block>
+</view>

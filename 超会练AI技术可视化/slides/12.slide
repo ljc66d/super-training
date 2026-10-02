@@ -1,0 +1,14 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 16, background: '#1E4FA8' }} />
+    <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 28 }}>
+      <Text style={{ fontSize: 20, color: '#3D7BD9', letterSpacing: 6 }}>THANK YOU</Text>
+      <Text style={{ fontSize: 52, fontWeight: 'bold', color: '#0E3F8C' }}>让 AI 的每一步，都看得见</Text>
+      <Box style={{ width: 140, height: 4, background: '#1E4FA8', borderRadius: 2 }} />
+      <Text style={{ fontSize: 22, color: '#4A5568' }}>超会练 · 智能运动健康小程序</Text>
+    </Box>
+    <Box style={{ width: '100%', flexDirection: 'row', justifyContent: 'center', paddingBottom: 32, paddingTop: 20 }}>
+      <Text style={{ fontSize: 16, color: '#8B97A8' }}>动作纠错 · 食物识别 · 训练营养闭环</Text>
+    </Box>
+  </Box>
+</Slide>

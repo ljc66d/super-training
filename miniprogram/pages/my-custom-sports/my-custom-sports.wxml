@@ -1,0 +1,22 @@
+<view class="page">
+  <!-- 新增 -->
+  <view class="card">
+    <view class="card-title"><text>新增运动</text></view>
+    <view class="add-row">
+      <input class="input flex-1" placeholder="运动名称，如 攀岩" placeholder-class="input-placeholder"
+             value="{{newName}}" bindinput="onNewInput" />
+      <view class="btn btn-primary btn-sm" bindtap="onAdd">添加</view>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view wx:if="{{list.length === 0}}" class="empty-wrap">
+    <text>还没有自定义运动，在上方添加</text>
+  </view>
+  <view wx:else class="card list-card">
+    <view wx:for="{{list}}" wx:key="custom_sport_id" class="list-item">
+      <text class="sport-name">{{item.sport_name}}</text>
+      <view class="btn btn-danger btn-sm" data-id="{{item.custom_sport_id}}" data-name="{{item.sport_name}}" bindtap="onDelete">删除</view>
+    </view>
+  </view>
+</view>

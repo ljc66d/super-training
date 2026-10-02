@@ -1,0 +1,104 @@
+.tab-row {
+  display: flex;
+  background: #14161A;
+  border: 1rpx solid #262A31;
+  border-radius: 20rpx;
+  padding: 8rpx;
+  margin-bottom: 24rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #9BA3AD;
+  padding: 16rpx 0;
+  border-radius: 14rpx;
+}
+
+.tab-active {
+  background: #FF4D2E;
+  color: #fff;
+  font-weight: 600;
+}
+
+.plan-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+}
+
+.plan-meta {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 12rpx;
+}
+
+.plan-desc {
+  font-size: 24rpx;
+  color: #9BA3AD;
+  margin-top: 12rpx;
+  line-height: 1.6;
+  display: block;
+}
+
+.adopt-btn {
+  margin-top: 20rpx;
+}
+
+.chip-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.chip {
+  padding: 12rpx 32rpx;
+  border-radius: 999rpx;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  font-size: 26rpx;
+  color: #9BA3AD;
+}
+
+.chip-active {
+  background: #FF4D2E;
+  border-color: #FF4D2E;
+  color: #fff;
+  font-weight: 600;
+}
+
+.days-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48rpx;
+}
+
+.step-btn {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  color: #FF4D2E;
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.days-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+  min-width: 160rpx;
+  text-align: center;
+}
+
+.ai-tip {
+  font-size: 22rpx;
+  color: #5C6570;
+  text-align: center;
+  margin-top: 24rpx;
+}

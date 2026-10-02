@@ -1,0 +1,135 @@
+<view class="page page-tab">
+  <!-- 未登录提示 -->
+  <view class="login-required" wx:if="{{needLogin}}">
+    <text class="login-req-icon">🍽️</text>
+    <text class="login-req-title">登录后记录饮食营养</text>
+    <text class="login-req-desc">拍照识别食物热量、追踪每日营养摄入、AI饮食评估</text>
+    <view class="login-req-btn" bindtap="goLogin">立即登录</view>
+  </view>
+
+  <block wx:else>
+  <!-- 日期 + 餐次 -->
+  <view class="card">
+    <view class="space-between">
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="date-pick"> {{date}}</view>
+      </picker>
+      <view class="badge badge-primary">{{mealLabel}}</view>
+    </view>
+    <view class="meal-row">
+      <view
+        wx:for="{{mealTypes}}"
+        wx:key="key"
+        class="chip {{mealType === item.key ? 'chip-active' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onSelectMeal"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 营养汇总 -->
+  <view class="card">
+    <view class="card-title"><text>今日营养</text></view>
+    <view class="nutri-row">
+      <view class="nutri-item">
+        <text class="nutri-value text-accent">{{stats ? stats.calories_text : '—'}}</text>
+        <text class="nutri-label">热量 kcal</text>
+      </view>
+      <view class="nutri-item">
+        <text class="nutri-value text-success">{{stats ? stats.protein_text : '—'}}</text>
+        <text class="nutri-label">蛋白 g</text>
+      </view>
+      <view class="nutri-item">
+        <text class="nutri-value text-warning">{{stats ? stats.carbs_text : '—'}}</text>
+        <text class="nutri-label">碳水 g</text>
+      </view>
+      <view class="nutri-item">
+        <text class="nutri-value text-danger">{{stats ? stats.fat_text : '—'}}</text>
+        <text class="nutri-label">脂肪 g</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 录入 -->
+  <view class="card">
+    <view class="card-title"><text>添加记录</text></view>
+
+    <!-- 从食物库选择：搜索 → 填克数 → 多选确认（与动作库选择同交互） -->
+    <view class="btn btn-primary" bindtap="goFoodPicker">🔍 搜索食物库添加</view>
+
+    <view class="divider divider-gap"></view>
+
+    <!-- 自然语言 -->
+    <view class="add-row">
+      <input class="input flex-1" placeholder="如：中午吃了一碗米饭和鸡胸肉150g" placeholder-class="input-placeholder"
+             value="{{nlpText}}" bindinput="onNlpInput" confirm-type="send" bindconfirm="onNlpSubmit" />
+      <view class="btn btn-accent btn-sm" loading="{{nlpLoading}}" bindtap="onNlpSubmit">AI录入</view>
+    </view>
+
+    <view class="divider divider-gap"></view>
+
+    <!-- 拍照识别 -->
+    <view class="btn btn-ghost" loading="{{photoLoading}}" bindtap="onPhoto"> 拍照识别食物</view>
+  </view>
+
+  <!-- AI 评估 -->
+  <view wx:if="{{assess}}" class="card">
+    <view class="card-title"><text> AI 饮食评估</text></view>
+    <view wx:if="{{assess.score != null}}" class="assess-score">
+      <text class="assess-score-num text-primary">{{assess.score}}</text>
+      <text class="assess-score-label">/100</text>
+    </view>
+    <view wx:if="{{assess.summary}}" class="assess-summary">{{assess.summary}}</view>
+    <view wx:for="{{assess.suggestions || []}}" wx:key="*this" class="assess-item">• {{item}}</view>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="card">
+    <view class="card-title"><text>饮食记录</text></view>
+    <view wx:if="{{records.length === 0}}" class="empty-inline">今天还没有记录，快去添加吧</view>
+    <view wx:for="{{records}}" wx:key="record_id" class="record-item">
+      <view class="flex-1">
+        <view class="record-head">
+          <text class="record-meal">{{item.meal_label}}</text>
+          <text class="record-source" wx:if="{{item.source && item.source !== 'manual'}}">{{item.source}}</text>
+        </view>
+        <view class="record-food-list">
+          <text wx:for="{{item.food_items.items}}" wx:key="food_name" wx:for-item="f" class="record-food">
+            {{f.food_name}}{{f.weight_g}}g
+          </text>
+        </view>
+      </view>
+      <view class="record-right">
+        <text class="record-cal">{{item.calories_text}} kcal</text>
+        <text class="record-del" data-id="{{item.record_id}}" bindtap="onDeleteRecord">删除</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 食材克数编辑面板 -->
+  <view wx:if="{{showIngredientPanel}}" class="mask" bindtap="onCancelIngredient">
+    <view class="modal modal-ingredient" catchtap="noop">
+      <view class="modal-title">确认食材与克数</view>
+      <view class="modal-sub" wx:if="{{editDishText}}">识别到：{{editDishText}}</view>
+      <scroll-view scroll-y class="ingredient-scroll">
+        <view wx:for="{{editItems}}" wx:key="index" class="ingredient-row">
+          <view class="ingredient-info">
+            <text class="ingredient-name">{{item.name}}</text>
+            <text wx:if="{{item.is_seasoning}}" class="ingredient-tag">辅料</text>
+          </view>
+          <view class="ingredient-right">
+            <input class="ingredient-input" type="digit" value="{{item.weight}}"
+                   data-index="{{index}}" bindinput="onIngredientWeight" />
+            <text class="ingredient-unit">g</text>
+            <text class="ingredient-del" data-index="{{index}}" bindtap="onRemoveIngredient">✕</text>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="space-between modal-btns">
+        <view class="btn btn-ghost btn-sm" bindtap="onCancelIngredient">取消</view>
+        <view class="btn btn-primary btn-sm" bindtap="onConfirmIngredients">确认并记录</view>
+      </view>
+    </view>
+  </view>
+  </block>
+</view>

@@ -1,0 +1,214 @@
+/* 底部留白统一走 app.wxss 的 --tabbar-clearance（真正生效的是 .page.page-tab，
+   这里保留是为了让首页单独打开时也一致，尺寸不在此写死） */
+.home-page {
+  padding-bottom: var(--tabbar-clearance);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8rpx 4rpx 24rpx;
+}
+
+.header-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.header-hello {
+  font-size: 26rpx;
+  color: #5C6570;
+}
+
+.header-name {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+  margin: 0 8rpx;
+}
+
+.avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: #FF4D2E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.stats-row {
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.stat {
+  flex: 1;
+  min-width: 200rpx;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-flex2 {
+  flex: 2;
+}
+
+.stat-icon {
+  font-size: 36rpx;
+}
+
+.stat-value {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+  margin-top: 8rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 4rpx;
+}
+
+.calorie-hint {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 16rpx;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.quick-action {
+  flex: 1;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-primary {
+  background: #FF4D2E;
+}
+
+.quick-accent {
+  background: #FF8A5C;
+}
+
+.qa-icon {
+  font-size: 44rpx;
+}
+
+.qa-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 12rpx;
+}
+
+.qa-sub {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 4rpx;
+}
+
+.func-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+  margin: 8rpx 4rpx 20rpx;
+}
+
+.func-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.func-item {
+  width: calc(25% - 12rpx);
+  background: #14161A;
+  border: 1rpx solid #262A31;
+  border-radius: 20rpx;
+  padding: 20rpx 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.func-icon {
+  font-size: 40rpx;
+}
+
+.func-label {
+  font-size: 22rpx;
+  color: #9BA3AD;
+  margin-top: 8rpx;
+}
+
+/* 游客模式横幅 */
+.guest-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1A1D22 0%, #262A31 100%);
+  border: 1rpx solid #FF4D2E;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.guest-banner-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.guest-banner-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+}
+
+.guest-banner-desc {
+  font-size: 22rpx;
+  color: #9BA3AD;
+  margin-top: 6rpx;
+}
+
+.guest-banner-btn {
+  background: #FF4D2E;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+  padding: 14rpx 36rpx;
+  border-radius: 40rpx;
+}
+
+/* 每日静息心率 */
+.add-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.hr-tip {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 12rpx;
+  line-height: 1.5;
+}

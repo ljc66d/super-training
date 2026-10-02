@@ -1,0 +1,267 @@
+<scroll-view scroll-y class="page training-page" enhanced show-scrollbar="{{false}}">
+  <!-- 内层包裹：底部留白放这里，scroll-view 自身的 padding-bottom 在 iOS 上不可靠 -->
+  <view class="training-inner">
+  <!-- 未登录提示 -->
+  <view class="login-required" wx:if="{{needLogin}}">
+    <text class="login-req-icon">🏋️</text>
+    <text class="login-req-title">登录后开始训练记录</text>
+    <text class="login-req-desc">记录训练内容、追踪训练容量、查看历史进步</text>
+    <view class="login-req-btn" bindtap="goLogin">立即登录</view>
+  </view>
+
+  <block wx:else>
+  <!-- 开始训练 标题 -->
+  <view class="training-header">
+    <text class="training-title">开始训练</text>
+    <text class="training-sub">记录每一次突破</text>
+  </view>
+
+  <!-- 运动大类 -->
+  <view class="card">
+    <view class="card-title"><text>选择运动大类</text></view>
+    <view class="cat-grid">
+      <view
+        wx:for="{{categories}}"
+        wx:key="key"
+        class="cat-card {{selectedKey === item.key ? 'active' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onSelectCategory"
+      >
+        <text class="cat-card-text">{{item.label}}</text>
+      </view>
+    </view>
+    <view wx:if="{{selectedKey === 'custom'}}" class="custom-sport-panel">
+      <view wx:if="{{customSports.length > 0}}" class="custom-sport-list">
+        <view
+          wx:for="{{customSports}}"
+          wx:key="custom_sport_id"
+          class="custom-chip {{customSport === item.sport_name ? 'custom-chip-active' : ''}}"
+          data-name="{{item.sport_name}}"
+          bindtap="onPickCustomSport"
+        >
+          <text>{{item.sport_name}}</text>
+        </view>
+      </view>
+      <view class="custom-sport-add">
+        <input class="input flex-1" placeholder="新增运动名称，如 攀岩" placeholder-class="input-placeholder"
+               value="{{newSportName}}" bindinput="onNewSportInput" />
+        <view class="btn btn-primary btn-sm" bindtap="onSaveCustomSport">保存</view>
+      </view>
+      <view wx:if="{{customSport}}" class="custom-sport-tip">
+        已选：<text class="custom-sport-name">{{customSport}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 力量训练：动作记录 -->
+  <block wx:if="{{selectedKey === 'strength'}}">
+    <view wx:if="{{started && totalSets > 0}}" class="stats-badges">
+      <view class="badge badge-primary">{{exercises.length}}个动作</view>
+      <view class="badge badge-warning">{{totalSets}}组</view>
+      <view class="badge badge-success">{{totalVolume}}kg</view>
+    </view>
+    <view wx:if="{{started}}" class="card">
+      <view class="card-title"><text>添加动作</text></view>
+      <view class="btn btn-primary btn-sm add-btn" bindtap="onPickFromLibrary"> 从动作库选择</view>
+      <view class="add-row">
+        <input class="input flex-1" placeholder="手动输入动作名" placeholder-class="input-placeholder"
+               value="{{manualName}}" bindinput="onManualInput" />
+        <view class="btn btn-ghost btn-sm add-btn" bindtap="onManualAdd">添加</view>
+      </view>
+      <view class="add-row">
+        <input class="input flex-1" placeholder="自然语言：如 卧推4组 每组8次 60kg" placeholder-class="input-placeholder"
+               value="{{nlpText}}" bindinput="onNlpInput" />
+        <view class="btn btn-accent btn-sm add-btn" loading="{{nlpLoading}}" bindtap="onNlpParse">解析</view>
+      </view>
+    </view>
+    <view wx:if="{{exercises.length > 0}}">
+      <view wx:for="{{exercises}}" wx:key="id" wx:for-item="ex" class="card">
+        <view class="ex-header">
+          <text class="ex-name">{{ex.exercise_name}}</text>
+          <text class="ex-remove" data-id="{{ex.id}}" bindtap="onRemoveExercise">✕</text>
+        </view>
+        <view wx:for="{{ex.sets}}" wx:key="id" wx:for-item="s" class="set-row">
+          <text class="set-no">第{{index + 1}}组</text>
+          <input class="input set-input" type="digit" placeholder="kg" placeholder-class="input-placeholder"
+                 value="{{s.weight_kg}}" data-exid="{{ex.id}}" data-setid="{{s.id}}" data-field="weight_kg"
+                 bindinput="onSetField" />
+          <input class="input set-input" type="number" placeholder="次" placeholder-class="input-placeholder"
+                 value="{{s.reps}}" data-exid="{{ex.id}}" data-setid="{{s.id}}" data-field="reps"
+                 bindinput="onSetField" />
+          <input class="input set-input set-input-rpe" type="digit" placeholder="RPE" placeholder-class="input-placeholder"
+                 value="{{s.rpe}}" data-exid="{{ex.id}}" data-setid="{{s.id}}" data-field="rpe"
+                 bindinput="onSetField" />
+          <view class="set-done {{s.done ? 'set-done-active' : ''}}" data-exid="{{ex.id}}" data-setid="{{s.id}}"
+                bindtap="onCompleteSet">{{s.done ? '✓' : '完成'}}</view>
+        </view>
+        <view class="add-set" data-exid="{{ex.id}}" bindtap="onAddNextSet">+ 增加一组</view>
+      </view>
+    </view>
+    <view wx:if="{{!started && exercises.length === 0}}" class="empty-wrap">
+      <text class="empty-icon"></text>
+      <text>点击下方「开始训练」记录每一次突破</text>
+    </view>
+  </block>
+
+  <!-- CrossFit WOD -->
+  <view wx:if="{{isCrossFit}}" class="card">
+    <view class="card-title"><text>WOD (Workout of the Day)</text></view>
+    <view class="run-mode-switch">
+      <view class="run-mode-item {{wod.mode === 'AMRAP' ? 'active' : ''}}" data-mode="AMRAP" bindtap="onWodModeChange">AMRAP</view>
+      <view class="run-mode-item {{wod.mode === 'EMOM' ? 'active' : ''}}" data-mode="EMOM" bindtap="onWodModeChange">EMOM</view>
+      <view class="run-mode-item {{wod.mode === 'Chipper' ? 'active' : ''}}" data-mode="Chipper" bindtap="onWodModeChange">Chipper</view>
+    </view>
+    <view class="hr-row-label">计时方式</view>
+    <view class="run-mode-switch">
+      <view class="run-mode-item {{wod.timerMode === 'count-up' ? 'active' : ''}}" data-mode="count-up" bindtap="onWodTimerModeChange">正计时</view>
+      <view class="run-mode-item {{wod.timerMode === 'count-down' ? 'active' : ''}}" data-mode="count-down" bindtap="onWodTimerModeChange">倒计时</view>
+    </view>
+    <view wx:if="{{wod.mode === 'AMRAP'}}" class="hr-row">
+      <input class="input flex-1" type="digit" placeholder="时间上限(分钟)" placeholder-class="input-placeholder"
+             value="{{wod.timeCapMin}}" data-field="timeCapMin" bindinput="onWodFieldInput" />
+      <input class="input flex-1" type="number" placeholder="完成轮数" placeholder-class="input-placeholder"
+             value="{{wod.rounds}}" data-field="rounds" bindinput="onWodFieldInput" />
+      <input class="input flex-1" type="number" placeholder="额外次数" placeholder-class="input-placeholder"
+             value="{{wod.extraReps}}" data-field="extraReps" bindinput="onWodFieldInput" />
+    </view>
+    <view wx:if="{{wod.mode === 'EMOM'}}" class="hr-row">
+      <input class="input flex-1" type="digit" placeholder="总时长(分钟)" placeholder-class="input-placeholder"
+             value="{{wod.totalMin}}" data-field="totalMin" bindinput="onWodFieldInput" />
+    </view>
+    <view wx:if="{{wod.mode === 'Chipper'}}" class="hr-row">
+      <input class="input flex-1" type="number" placeholder="总完成时间(秒)" placeholder-class="input-placeholder"
+             value="{{wod.totalTimeSec}}" data-field="totalTimeSec" bindinput="onWodFieldInput" />
+    </view>
+    <view class="hr-row">
+      <input class="input flex-1" type="number" placeholder="平均心率(可选)" placeholder-class="input-placeholder"
+             value="{{metconAvgHr}}" bindinput="onMetconAvgHrInput" />
+      <input class="input flex-1" type="number" placeholder="最高心率(可选)" placeholder-class="input-placeholder"
+             value="{{metconMaxHr}}" bindinput="onMetconMaxHrInput" />
+    </view>
+    <view class="hr-row">
+      <input class="input flex-1" type="digit" placeholder="整体RPE(6-20，可选)" placeholder-class="input-placeholder"
+             value="{{overallRpe}}" bindinput="onOverallRpeInput" />
+    </view>
+    <view wx:for="{{wod.movements}}" wx:key="id" wx:for-item="m" class="wod-mov">
+      <view class="wod-mov-row">
+        <input class="input flex-2" placeholder="动作名" placeholder-class="input-placeholder"
+               value="{{m.name}}" data-id="{{m.id}}" data-field="name" bindinput="onWodMovementInput" />
+        <text class="pick-lib" data-id="{{m.id}}" bindtap="onPickWodMovement">库</text>
+      </view>
+      <view class="wod-mov-row">
+        <input class="input flex-1" type="digit" placeholder="重量kg" placeholder-class="input-placeholder"
+               value="{{m.weight_kg}}" data-id="{{m.id}}" data-field="weight_kg" bindinput="onWodMovementInput" />
+        <input class="input flex-1" type="number" placeholder="次数" placeholder-class="input-placeholder"
+               value="{{m.reps}}" data-id="{{m.id}}" data-field="reps" bindinput="onWodMovementInput" />
+        <text class="run-group-del" data-id="{{m.id}}" bindtap="onWodRemoveMovement">删除</text>
+      </view>
+    </view>
+    <view class="btn btn-ghost btn-sm add-btn" bindtap="onWodAddMovement">＋ 添加动作</view>
+  </view>
+
+  <!-- Hyrox 分段赛程 -->
+  <view wx:if="{{isHyrox}}" class="card">
+    <view class="card-title"><text>Hyrox 赛程</text></view>
+    <view class="run-group-tip">自定义分段：每段选择动作 + 填写次数或距离，训练时逐段完成</view>
+    <view class="hr-row">
+      <input class="input flex-1" type="number" placeholder="平均心率(可选)" placeholder-class="input-placeholder"
+             value="{{metconAvgHr}}" bindinput="onMetconAvgHrInput" />
+      <input class="input flex-1" type="number" placeholder="最高心率(可选)" placeholder-class="input-placeholder"
+             value="{{metconMaxHr}}" bindinput="onMetconMaxHrInput" />
+    </view>
+    <view class="hr-row">
+      <input class="input flex-1" type="digit" placeholder="整体RPE(6-20，可选)" placeholder-class="input-placeholder"
+             value="{{overallRpe}}" bindinput="onOverallRpeInput" />
+    </view>
+    <view wx:for="{{hyroxStations}}" wx:key="id" wx:for-item="s" class="hyrox-station">
+      <view class="hyrox-station-head">
+        <text class="hyrox-station-no">第{{index + 1}}段</text>
+        <view class="hyrox-station-done {{s.done ? 'done' : ''}}" data-id="{{s.id}}" bindtap="onHyroxToggleDone">{{s.done ? '✓ 完成' : '完成'}}</view>
+      </view>
+      <view class="run-group-inputs">
+        <input class="input flex-2" placeholder="动作名" placeholder-class="input-placeholder"
+               value="{{s.name}}" data-id="{{s.id}}" data-field="name" bindinput="onHyroxStationInput" />
+        <text class="pick-lib" data-id="{{s.id}}" bindtap="onPickHyroxStation">库</text>
+      </view>
+      <view class="run-group-inputs">
+        <input class="input flex-1" type="digit" placeholder="重量kg" placeholder-class="input-placeholder"
+               value="{{s.weight_kg}}" data-id="{{s.id}}" data-field="weight_kg" bindinput="onHyroxStationInput" />
+        <input class="input flex-1" placeholder="次数/距离" placeholder-class="input-placeholder"
+               value="{{s.metric}}" data-id="{{s.id}}" data-field="metric" bindinput="onHyroxStationInput" />
+        <text class="run-group-del" data-id="{{s.id}}" bindtap="onRemoveHyroxStation">删除</text>
+      </view>
+    </view>
+    <view class="btn btn-ghost btn-sm add-btn" bindtap="onLoadHyroxPreset">加载标准赛程</view>
+    <view class="btn btn-ghost btn-sm add-btn" bindtap="onAddHyroxStation">＋ 添加分段</view>
+  </view>
+
+  <!-- 耐力运动（跑步/骑行/游泳/徒步） -->
+  <view wx:if="{{isEndurance}}" class="card">
+    <view class="card-title"><text>运动记录</text></view>
+    <view wx:if="{{selectedKey !== 'hike'}}" class="run-mode-switch">
+      <view class="run-mode-item {{runMode === 'long' ? 'active' : ''}}" data-mode="long" bindtap="onRunModeChange">单次长距离</view>
+      <view class="run-mode-item {{runMode === 'custom' ? 'active' : ''}}" data-mode="custom" bindtap="onRunModeChange">自定义分组</view>
+    </view>
+    <block wx:if="{{runMode === 'long' || selectedKey === 'hike'}}">
+      <view class="hr-row">
+        <input class="input flex-1" type="digit" placeholder="距离(km)" placeholder-class="input-placeholder"
+               value="{{longRun.distance}}" data-field="distance" bindinput="onLongRunInput" />
+        <input class="input flex-1" type="digit" placeholder="时间(分钟)" placeholder-class="input-placeholder"
+               value="{{longRun.timeMin}}" data-field="timeMin" bindinput="onLongRunInput" />
+      </view>
+      <view class="hr-row">
+        <input class="input flex-1" type="number" placeholder="平均心率(可选)" placeholder-class="input-placeholder"
+               value="{{longRun.avgHr}}" data-field="avgHr" bindinput="onLongRunInput" />
+        <input class="input flex-1" type="number" placeholder="最高心率(可选)" placeholder-class="input-placeholder"
+               value="{{longRun.maxHr}}" data-field="maxHr" bindinput="onLongRunInput" />
+      </view>
+      <view wx:if="{{selectedKey !== 'swim'}}" class="hr-row">
+        <input class="input flex-1" type="digit" placeholder="爬升(米，可选)" placeholder-class="input-placeholder"
+               value="{{longRun.climb}}" data-field="climb" bindinput="onLongRunInput" />
+      </view>
+    </block>
+    <block wx:else>
+      <view class="run-group-tip">每组填写距离(米) + 成绩(秒) + 组间歇(秒)</view>
+      <view class="hr-row">
+        <input class="input flex-1" type="number" placeholder="平均心率(可选)" placeholder-class="input-placeholder"
+               value="{{runGroupAvgHr}}" bindinput="onRunGroupAvgHrInput" />
+        <input class="input flex-1" type="number" placeholder="最高心率(可选)" placeholder-class="input-placeholder"
+               value="{{runGroupMaxHr}}" bindinput="onRunGroupMaxHrInput" />
+      </view>
+      <view wx:for="{{runGroups}}" wx:key="id" wx:for-item="g" class="run-group">
+        <view class="run-group-head">
+          <text class="run-group-no">第{{index + 1}}组</text>
+          <text class="run-group-del" data-id="{{g.id}}" bindtap="onRemoveRunGroup">删除</text>
+        </view>
+        <view class="run-group-inputs">
+          <input class="input flex-1" type="number" placeholder="距离米" placeholder-class="input-placeholder"
+                 value="{{g.distance}}" data-id="{{g.id}}" data-field="distance" bindinput="onRunGroupInput" />
+          <input class="input flex-1" type="number" placeholder="成绩秒" placeholder-class="input-placeholder"
+                 value="{{g.time_sec}}" data-id="{{g.id}}" data-field="time_sec" bindinput="onRunGroupInput" />
+          <input class="input flex-1" type="number" placeholder="间歇秒" placeholder-class="input-placeholder"
+                 value="{{g.rest_sec}}" data-id="{{g.id}}" data-field="rest_sec" bindinput="onRunGroupInput" />
+        </view>
+      </view>
+      <view class="btn btn-ghost btn-sm add-btn" bindtap="onAddRunGroup">＋ 添加分组</view>
+    </block>
+    <view class="hr-row">
+      <input class="input flex-1" type="digit" placeholder="整体RPE(6-20，可选)" placeholder-class="input-placeholder"
+             value="{{overallRpe}}" bindinput="onOverallRpeInput" />
+    </view>
+  </view>
+
+  <!-- 计时区 -->
+  <view class="card timer-card">
+    <view class="timer-value {{started ? 'timer-running' : ''}}">{{elapsedText}}</view>
+  </view>
+  </block>
+  </view>
+</scroll-view>
+
+<!-- 开始/结束训练按钮（固定悬浮在 tabBar 上方） -->
+<view class="training-start-btn-wrap" wx:if="{{!needLogin}}">
+  <view wx:if="{{!started}}" class="btn btn-primary btn-timer" bindtap="onStart">
+    {{isCrossFit ? '开始 WOD 训练' : (isHyrox ? '开始 Hyrox 训练' : '开始训练')}}
+  </view>
+  <view wx:else class="btn btn-danger btn-timer" bindtap="onStop">结束训练并保存</view>
+</view>

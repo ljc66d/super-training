@@ -1,0 +1,44 @@
+.session-head {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.session-sport {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+}
+
+.session-time {
+  font-size: 22rpx;
+  color: #5C6570;
+}
+
+.session-body {
+  margin: 16rpx 0;
+}
+
+.session-ex {
+  font-size: 26rpx;
+  color: #9BA3AD;
+  line-height: 1.6;
+}
+
+.session-stats {
+  display: flex;
+  gap: 24rpx;
+  border-top: 1rpx solid #262A31;
+  padding-top: 16rpx;
+}
+
+.session-stat {
+  font-size: 24rpx;
+  color: #5C6570;
+}
+
+.empty-sub {
+  font-size: 22rpx;
+  color: #5B6B82;
+  margin-top: 8rpx;
+}

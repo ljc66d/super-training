@@ -1,0 +1,74 @@
+.latest-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.lstat {
+  flex: 1;
+  background: #1A1D22;
+  border-radius: 16rpx;
+  padding: 20rpx 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lstat-value {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.lstat-label {
+  font-size: 20rpx;
+  color: #5C6570;
+  margin-top: 6rpx;
+}
+
+.empty-inline {
+  color: #5C6570;
+  font-size: 26rpx;
+  text-align: center;
+  padding: 24rpx 0;
+}
+
+.picker-input {
+  color: #9BA3AD;
+}
+
+.input-gap {
+  margin-top: 20rpx;
+}
+
+.btn-gap {
+  margin-top: 28rpx;
+}
+
+.form-tip {
+  font-size: 22rpx;
+  color: #5C6570;
+  display: block;
+  margin-top: 16rpx;
+}
+
+.his-item {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #262A31;
+}
+
+.his-item:last-child {
+  border-bottom: none;
+}
+
+.his-date {
+  width: 180rpx;
+  font-size: 26rpx;
+  color: #F2F4F5;
+}
+
+.his-val {
+  font-size: 24rpx;
+  color: #9BA3AD;
+}

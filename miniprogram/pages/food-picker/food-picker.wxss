@@ -1,0 +1,200 @@
+.search-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.hint {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-bottom: 20rpx;
+}
+
+.group-bar {
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+}
+
+.group-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 12rpx 26rpx;
+  margin-right: 14rpx;
+  border-radius: 999rpx;
+  background: #1B1F26;
+  border: 2rpx solid #262A31;
+  font-size: 24rpx;
+  color: #8A93A0;
+}
+
+.group-chip-active {
+  background: rgba(255, 77, 46, 0.14);
+  border-color: #FF4D2E;
+  color: #FF4D2E;
+}
+
+.food-card {
+  padding: 24rpx 28rpx;
+}
+
+.food-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.food-name {
+  font-size: 28rpx;
+  color: #F2F4F5;
+}
+
+.food-meta {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 4rpx;
+}
+
+.food-add {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  border: 2rpx solid #262A31;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+  color: #FF4D2E;
+  flex-shrink: 0;
+}
+
+.picked-card {
+  margin-top: 20rpx;
+}
+
+.picked-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #262A31;
+}
+
+.picked-row:last-child {
+  border-bottom: none;
+}
+
+.picked-name {
+  font-size: 26rpx;
+  color: #F2F4F5;
+}
+
+.picked-right {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.picked-cal {
+  font-size: 24rpx;
+  color: #9BA3AD;
+}
+
+.picked-del {
+  font-size: 28rpx;
+  color: #E5484D;
+  padding: 4rpx 8rpx;
+}
+
+.page-bottom-space {
+  height: 140rpx;
+}
+
+/* 克数弹窗（与 diet 页弹窗同风格；z-index 高于一切浮层） */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: 600rpx;
+  background: #14161A;
+  border: 1rpx solid #262A31;
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+}
+
+.modal-sub {
+  font-size: 24rpx;
+  color: #5C6570;
+  margin: 8rpx 0 24rpx;
+}
+
+.weight-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.weight-label {
+  font-size: 26rpx;
+  color: #9BA3AD;
+  width: 140rpx;
+  flex-shrink: 0;
+}
+
+.quick-row {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 16rpx;
+  flex-wrap: wrap;
+}
+
+.quick-chip {
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid #262A31;
+  background: #1B1E24;
+  font-size: 24rpx;
+  color: #9BA3AD;
+}
+
+.quick-chip-active {
+  background: #FF4D2E;
+  border-color: #FF4D2E;
+  color: #fff;
+}
+
+.modal-estimate {
+  font-size: 26rpx;
+  color: #FF8A5C;
+  margin-top: 16rpx;
+  font-weight: 600;
+}
+
+.modal-btns {
+  margin-top: 28rpx;
+}
+
+/* 底部确认栏 */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #14161A;
+  border-top: 1rpx solid #262A31;
+  padding: 16rpx 24rpx;
+  z-index: 900;
+}

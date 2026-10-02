@@ -1,0 +1,43 @@
+<view class="page">
+  <!-- 日历 -->
+  <view class="card">
+    <view class="cal-head">
+      <view class="cal-nav" bindtap="onPrevMonth">‹</view>
+      <text class="cal-title">{{year}}年{{month}}月</text>
+      <view class="cal-nav" bindtap="onNextMonth">›</view>
+    </view>
+    <view class="cal-week">
+      <view wx:for="{{week}}" wx:key="*this" class="cal-week-cell">{{item}}</view>
+    </view>
+    <view class="cal-grid">
+      <view wx:for="{{cells}}" wx:key="key"
+            class="cal-cell {{item.blank ? 'cal-blank' : ''}} {{item.selected ? 'cal-selected' : ''}} {{item.hasRecord ? 'cal-record' : ''}}"
+            data-date="{{item.date}}" bindtap="onSelectDay">
+        <text>{{item.day}}</text>
+        <view wx:if="{{item.hasRecord}}" class="cal-dot"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 当日汇总 -->
+  <view class="card">
+    <view class="card-title"><text>{{selected}} 饮食</text></view>
+    <view wx:if="{{dayStats}}" class="day-sum">
+      <view class="sum-item"><text class="sum-value text-accent">{{dayStats.calories_text}}</text><text class="sum-label">热量kcal</text></view>
+      <view class="sum-item"><text class="sum-value text-success">{{dayStats.protein_text}}</text><text class="sum-label">蛋白g</text></view>
+      <view class="sum-item"><text class="sum-value text-warning">{{dayStats.carbs_text}}</text><text class="sum-label">碳水g</text></view>
+      <view class="sum-item"><text class="sum-value text-danger">{{dayStats.fat_text}}</text><text class="sum-label">脂肪g</text></view>
+    </view>
+    <view wx:else class="empty-inline">当天暂无饮食数据</view>
+  </view>
+
+  <!-- 当日记录 -->
+  <view class="card">
+    <view class="card-title"><text>记录明细</text></view>
+    <view wx:if="{{dayRecords.length === 0}}" class="empty-inline">无记录</view>
+    <view wx:for="{{dayRecords}}" wx:key="record_id" class="rec-item">
+      <text class="rec-food">{{item.meal_type || '饮食'}}</text>
+      <text class="rec-cal">{{item.calories}} kcal</text>
+    </view>
+  </view>
+</view>

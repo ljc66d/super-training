@@ -1,0 +1,70 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 56, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>AI 食物识别 · 处理流程</Text>
+      <Text style={{ fontSize: 14, color: '#E8EFF8' }}>超会练 · 智能运动健康</Text>
+    </Box>
+    <Box style={{ flex: 1, paddingLeft: 40, paddingRight: 40, paddingTop: 20, paddingBottom: 12, flexDirection: 'column', gap: 16 }}>
+      <Box style={{ flex: 1 }}>
+        <svg width='100%' height='100%' viewBox='0 0 1200 320'>
+          <defs>
+            <marker id="arrow-a9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </marker>
+          </defs>
+          <g>
+            <rect x="25" y="60" width="190" height="80" rx="10" fill="#E8EFF8" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="120" y="88" textAnchor="middle" dominantBaseline="central" fontSize="22" fontWeight="bold" fill="#0E3F8C">照片输入</text>
+            <text x="120" y="116" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">手机拍摄</text>
+          </g>
+          <g>
+            <rect x="265" y="60" width="190" height="80" rx="10" fill="#E8EFF8" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="360" y="88" textAnchor="middle" dominantBaseline="central" fontSize="22" fontWeight="bold" fill="#0E3F8C">图像识别</text>
+            <text x="360" y="116" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">双模型</text>
+          </g>
+          <g>
+            <rect x="505" y="60" width="190" height="80" rx="10" fill="#E8EFF8" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="600" y="88" textAnchor="middle" dominantBaseline="central" fontSize="22" fontWeight="bold" fill="#0E3F8C">食材匹配</text>
+            <text x="600" y="116" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">中国成分表</text>
+          </g>
+          <g>
+            <rect x="745" y="60" width="190" height="80" rx="10" fill="#E8EFF8" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="840" y="88" textAnchor="middle" dominantBaseline="central" fontSize="22" fontWeight="bold" fill="#0E3F8C">营养计算</text>
+            <text x="840" y="116" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">热量蛋白</text>
+          </g>
+          <g>
+            <rect x="985" y="60" width="190" height="80" rx="10" fill="#E8EFF8" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="1080" y="88" textAnchor="middle" dominantBaseline="central" fontSize="22" fontWeight="bold" fill="#0E3F8C">一键记录</text>
+            <text x="1080" y="116" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">热量闭环</text>
+          </g>
+          <line x1="215" y1="100" x2="265" y2="100" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a9)" />
+          <line x1="455" y1="100" x2="505" y2="100" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a9)" />
+          <line x1="695" y1="100" x2="745" y2="100" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a9)" />
+          <line x1="935" y1="100" x2="985" y2="100" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a9)" />
+          <line x1="360" y1="140" x2="360" y2="172" stroke="#8B97A8" strokeWidth="1.5" strokeDasharray="4 3" />
+          <line x1="230" y1="172" x2="610" y2="172" stroke="#8B97A8" strokeWidth="1.5" strokeDasharray="4 3" />
+          <line x1="230" y1="172" x2="230" y2="210" stroke="#8B97A8" strokeWidth="1.5" strokeDasharray="4 3" />
+          <line x1="610" y1="172" x2="610" y2="210" stroke="#8B97A8" strokeWidth="1.5" strokeDasharray="4 3" />
+          <g>
+            <rect x="60" y="210" width="340" height="80" rx="10" fill="#F0F5FC" stroke="#0E3F8C" strokeWidth="1.5" />
+            <text x="230" y="238" textAnchor="middle" dominantBaseline="central" fontSize="21" fontWeight="bold" fill="#0E3F8C">云视觉大模型</text>
+            <text x="230" y="266" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">豆包 · 任意食物 · 优先</text>
+          </g>
+          <g>
+            <rect x="440" y="210" width="340" height="80" rx="10" fill="#F0F5FC" stroke="#0E3F8C" strokeWidth="1.5" />
+            <text x="610" y="238" textAnchor="middle" dominantBaseline="central" fontSize="21" fontWeight="bold" fill="#0E3F8C">本地 CNN</text>
+            <text x="610" y="266" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">208 类 · 离线 · 兜底</text>
+          </g>
+        </svg>
+      </Box>
+      <Box style={{ width: '100%', background: '#F0F5FC', borderRadius: 8, paddingLeft: 20, paddingRight: 20, paddingTop: 14, paddingBottom: 14, flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#0E3F8C' }}>结论</Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>识别结果直接换算营养数据，打通「训练消耗—饮食摄入」热量闭环</Text>
+      </Box>
+    </Box>
+    <Box style={{ width: '100%', height: 40, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+      <Text style={{ fontSize: 14, color: '#8B97A8' }}>超会练 · 智能运动健康</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8' }}>09 / 12</Text>
+    </Box>
+  </Box>
+</Slide>

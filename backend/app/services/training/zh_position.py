@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+"""英文→中文词元翻译：体位/角度 + 身体部位"""
+POSITION_ZH: dict[str, str] = {
+    "seated": "坐姿", "sitted": "坐姿", "standing": "站姿", "lying": "仰卧",
+    "prone": "俯卧", "supine": "仰卧", "incline": "上斜", "decline": "下斜",
+    "flat": "平板", "kneeling": "跪姿", "suspended": "悬挂", "vertical": "垂直",
+    "horizontal": "水平", "inverted": "倒挂", "overhead": "过头", "behind": "颈后",
+    "side": "侧向", "lateral": "侧向", "front": "前", "rear": "后",
+    "low": "低位", "high": "高位", "middle": "中位", "upper": "上", "lower": "下",
+    "inner": "内侧", "inside": "内侧", "outside": "外侧", "forward": "向前",
+    "backward": "向后", "upright": "直立", "bent": "俯身", "straight": "直臂",
+    "stiff": "直腿", "close": "窄", "wide": "宽", "narrow": "窄",
+    "parallel": "平行", "neutral": "中立", "underhand": "反握", "overhand": "正握",
+    "pronated": "正握", "supinated": "反握", "mixed": "混合握", "alternate": "交替",
+    "alternating": "交替", "single": "单", "double": "双", "one": "单臂", "two": "双臂",
+    "assisted": "辅助", "weighted": "负重", "bodyweight": "徒手", "full": "全",
+    "half": "半", "deep": "深", "extended": "伸展", "flexed": "屈曲",
+    "cross": "交叉", "cross-over": "交叉", "crossover": "交叉", "twisted": "扭转",
+    "twisting": "扭转", "rotational": "旋转", "circular": "环绕", "inverse": "反向",
+    "reverse": "反向", "revers": "反向", "modified": "改良", "advanced": "进阶",
+    "isometric": "等长", "negative": "离心", "plyo": "增强式", "dynamic": "动态",
+    "static": "静态", "power": "爆发力", "speed": "速度", "drop": "递减",
+    "range": "幅度", "pov": "视角", "grip": "握", "palms": "掌心", "palm": "掌心",
+    "hands": "双手", "arms": "双臂", "legs": "双腿", "foot": "脚", "feet": "双脚",
+    "toe": "脚尖", "heel": "脚跟", "head": "头", "face": "面部",
+}
+
+MUSCLE_ZH: dict[str, str] = {
+    "ankle": "踝", "wrist": "腕", "elbow": "肘", "knee": "膝", "knees": "膝",
+    "hip": "髋", "shoulder": "肩", "neck": "颈", "spine": "脊柱", "chest": "胸",
+    "back": "背", "lat": "背阔肌", "lats": "背阔肌", "delt": "三角肌",
+    "deltoid": "三角肌", "bicep": "肱二头肌", "biceps": "肱二头肌",
+    "tricep": "肱三头肌", "triceps": "肱三头肌", "hamstring": "腘绳肌",
+    "hamstrings": "腘绳肌", "quad": "股四头肌", "quads": "股四头肌",
+    "glute": "臀肌", "glutes": "臀肌", "calf": "小腿", "calves": "小腿",
+    "ab": "腹肌", "abs": "腹肌", "oblique": "腹斜肌", "obliques": "腹斜肌",
+    "scapula": "肩胛骨", "piriformis": "梨状肌", "groin": "腹股沟",
+    "pelvic": "骨盆", "femoral": "股骨", "posterior": "后侧", "anterior": "前侧",
+    "soleus": "比目鱼肌", "tibialis": "胫骨前肌", "flexor": "屈肌",
+    "stabilizer": "稳定肌", "sternum": "胸骨",
+}
+
+SPECIAL_ZH: dict[str, str] = {
+    "arnold": "阿诺德", "cuban": "古巴", "bradford": "布拉德福德", "rocky": "洛基",
+    "zottman": "佐特曼", "french": "法式", "jm": "JM", "tate": "泰特",
+    "spider": "蜘蛛", "goblet": "高脚杯", "sumo": "相扑", "romanian": "罗马尼亚",
+    "jefferson": "杰斐逊", "zercher": "泽奇", "pistol": "手枪", "sissy": "西施",
+    "hack": "哈克", "bulgarian": "保加利亚", "turkish": "土耳其", "renegade": "叛徒",
+    "gironda": "吉龙达", "donkey": "驴式", "clock": "时钟", "diamond": "钻石",
+    "archer": "弓箭手", "planche": "前水平", "gorilla": "大猩猩", "monster": "怪兽",
+    "cocoons": "蚕式", "flutter": "振翅", "wipers": "雨刷", "janda": "詹达",
+    "otis": "奥蒂斯", "london": "伦敦", "landmine": "地雷管", "olympic": "奥林匹克",
+    "skier": "滑雪", "ski": "滑雪", "skull": "颅骨", "crusher": "粉碎",
+    "guillotine": "断头台", "rocking": "摇摆", "slingers": "悬臂", "straddle": "跨坐",
+    "iron": "铁十字", "judo": "柔道", "battling": "战", "response": "反应",
+    "slam": "砸地", "snatch": "抓举", "swing": "摆动", "thruster": "火箭推",
+}

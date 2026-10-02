@@ -1,0 +1,36 @@
+<view class="page" wx:if="{{ex}}">
+  <!-- GIF -->
+  <view class="gif-card" wx:if="{{gifUrl}}">
+    <image src="{{gifUrl}}" mode="aspectFit" class="gif-img" />
+  </view>
+  <view class="gif-card gif-placeholder" wx:elif="{{gifLoading}}">
+    <text class="text-muted">动作演示加载中...</text>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="card">
+    <view class="space-between">
+      <text class="detail-name">{{ex.name_zh || ex.name}}</text>
+      <text wx:if="{{ex.difficulty}}" class="badge badge-warning">{{ex.difficulty}}</text>
+    </view>
+    <text wx:if="{{ex.name && ex.name !== ex.name_zh}}" class="detail-en">{{ex.name}}</text>
+    <view class="meta-row">
+      <text class="meta-chip"> {{ex.target_muscle || '—'}}</text>
+      <text class="meta-chip"> {{ex.equipment || '徒手'}}</text>
+      <text class="meta-chip"> {{ex.category || ''}}</text>
+    </view>
+    <view wx:if="{{ex.met_value}}" class="met-line">MET 代谢当量：{{ex.met_value}}（估算消耗参考）</view>
+  </view>
+
+  <!-- 动作要领 -->
+  <view class="card">
+    <view class="card-title"><text>动作要领</text></view>
+    <view wx:if="{{instructions.length === 0}}" class="text-muted">暂无说明</view>
+    <view wx:for="{{instructions}}" wx:key="*this" class="instruct-item">
+      <text class="instruct-num">{{index + 1}}</text>
+      <text class="instruct-text">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="btn btn-primary" bindtap="onAddToTraining"> 加入训练</view>
+</view>

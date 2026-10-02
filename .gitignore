@@ -1,0 +1,66 @@
+# ===== 密钥与环境变量（严禁上传）=====
+.env
+*.env
+!*.env.example
+deploy/backend/.env
+deploy_pkg/.env
+
+# ===== 模型权重与大文件 =====
+backend/models/
+*.pth
+*.onnx
+*.pt
+*.zip
+
+# ===== 媒体与运行数据 =====
+backend/videos/
+backend/uploads/
+backend/super_training.db
+*.db
+data/
+exercises-gif/
+exercises-json/
+
+# ===== 参赛与个人文档（不公开）=====
+shangti/
+docs/
+超会练项目计划书.docx
+超会练项目计划书（大赛优化版）.docx
+
+# ===== 构建产物 / 缓存 =====
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+.expo/
+*.log
+
+# ===== 本地部署与打包脚本产物 =====
+deploy_pkg/
+deploy/backend/
+super-training-cloudrun.zip
+exercises-gif.zip
+exercises-json.zip
+
+# ===== 参赛材料与个人文档（不公开）=====
+shangti/
+docs/
+
+# ===== IDE / 工具 =====
+.vscode/
+.workbuddy/
+.idea/
+*.swp
+Thumbs.db
+
+# ===== 个人/他人文档与内部报告 =====
+信安-*.docx
+信安-*.doc
+附件：*.pdf
+注释AI味扫描报告.txt
+*.docx
+.npm-cache/
+dist-check/

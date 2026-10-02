@@ -1,0 +1,77 @@
+.gif-card {
+  background: #14161A;
+  border: 1rpx solid #262A31;
+  border-radius: 24rpx;
+  padding: 20rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.gif-img {
+  width: 100%;
+  height: 420rpx;
+  border-radius: 16rpx;
+}
+
+.detail-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+}
+
+.detail-en {
+  font-size: 24rpx;
+  color: #5C6570;
+  display: block;
+  margin-top: 6rpx;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 20rpx;
+}
+
+.meta-chip {
+  font-size: 22rpx;
+  color: #9BA3AD;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  border-radius: 999rpx;
+  padding: 8rpx 20rpx;
+}
+
+.met-line {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 16rpx;
+}
+
+.instruct-item {
+  display: flex;
+  gap: 16rpx;
+  padding: 10rpx 0;
+}
+
+.instruct-num {
+  flex: none;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.15);
+  color: #FF4D2E;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rpx;
+}
+
+.instruct-text {
+  flex: 1;
+  font-size: 26rpx;
+  color: #9BA3AD;
+  line-height: 1.7;
+}

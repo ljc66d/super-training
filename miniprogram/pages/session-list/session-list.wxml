@@ -1,0 +1,27 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+  <view wx:elif="{{sessions.length === 0}}" class="empty-wrap">
+    <text class="empty-icon"></text>
+    <text>还没有训练记录</text>
+    <text class="empty-sub">去「训练」页开始第一次训练吧</text>
+  </view>
+
+  <view wx:for="{{sessions}}" wx:key="session_id" class="card session-card" data-id="{{item.session_id}}" bindtap="onOpenDetail">
+    <view class="space-between">
+      <view class="session-head">
+        <text class="session-sport">{{item.sport_name || '训练'}}</text>
+        <text class="badge badge-primary">{{item.category || ''}}</text>
+      </view>
+      <text class="session-time">{{item.time_text}}</text>
+    </view>
+    <view class="session-body">
+      <text wx:if="{{item.exercises_text}}" class="session-ex">{{item.exercises_text}}</text>
+      <text wx:else class="session-ex text-muted">无动作记录</text>
+    </view>
+    <view class="session-stats">
+      <text class="session-stat">⏱ {{item.duration_text}}</text>
+      <text wx:if="{{item.volume_text}}" class="session-stat"> {{item.volume_text}}</text>
+      <text wx:if="{{item.calories_text}}" class="session-stat"> {{item.calories_text}}</text>
+    </view>
+  </view>
+</view>

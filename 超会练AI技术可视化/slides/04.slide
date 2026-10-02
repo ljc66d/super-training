@@ -1,0 +1,51 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 56, background: '#1E4FA8', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>双 AI 能力架构总览</Text>
+      <Text style={{ fontSize: 14, color: '#E8EFF8' }}>超会练 · 智能运动健康</Text>
+    </Box>
+    <Box style={{ flex: 1, paddingLeft: 40, paddingRight: 40, paddingTop: 20, paddingBottom: 12, flexDirection: 'column', gap: 16 }}>
+      <Box style={{ flex: 1 }}>
+        <svg width='100%' height='100%' viewBox='0 0 1200 470'>
+          <defs>
+            <marker id="arrow-a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </marker>
+          </defs>
+          <g>
+            <rect x="470" y="16" width="260" height="70" rx="12" fill="#E8EFF8" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="600" y="44" textAnchor="middle" dominantBaseline="central" fontSize="22" fontWeight="bold" fill="#0E3F8C">智能设备采集</text>
+            <text x="600" y="70" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">手机摄像头 · 无需专用硬件</text>
+          </g>
+          <g>
+            <rect x="140" y="190" width="420" height="96" rx="12" fill="#F0F5FC" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="350" y="226" textAnchor="middle" dominantBaseline="central" fontSize="24" fontWeight="bold" fill="#0E3F8C">动作纠错</text>
+            <text x="350" y="258" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">HRNet 姿态估计 · 骨骼关键点 · 关节角度</text>
+          </g>
+          <g>
+            <rect x="640" y="190" width="420" height="96" rx="12" fill="#F0F5FC" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="850" y="226" textAnchor="middle" dominantBaseline="central" fontSize="24" fontWeight="bold" fill="#0E3F8C">食物识别</text>
+            <text x="850" y="258" textAnchor="middle" dominantBaseline="central" fontSize="15" fill="#4A5568">云视觉 + 本地分类 · 成分表匹配 · 营养计算</text>
+          </g>
+          <g>
+            <rect x="470" y="392" width="260" height="62" rx="12" fill="#E8EFF8" stroke="#1E4FA8" strokeWidth="1.5" />
+            <text x="600" y="414" textAnchor="middle" dominantBaseline="central" fontSize="20" fontWeight="bold" fill="#0E3F8C">智能反馈</text>
+            <text x="600" y="438" textAnchor="middle" dominantBaseline="central" fontSize="14" fill="#4A5568">评分 · 纠错 · 营养热量</text>
+          </g>
+          <polyline points="600,86 600,138 350,138 350,190" fill="none" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a4)" />
+          <polyline points="600,86 600,138 850,138 850,190" fill="none" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a4)" />
+          <polyline points="350,286 350,340 600,340 600,392" fill="none" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a4)" />
+          <polyline points="850,286 850,340 600,340 600,392" fill="none" stroke="#8B97A8" strokeWidth="2" markerEnd="url(#arrow-a4)" />
+        </svg>
+      </Box>
+      <Box style={{ width: '100%', background: '#F0F5FC', borderRadius: 8, paddingLeft: 20, paddingRight: 20, paddingTop: 14, paddingBottom: 14, flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#0E3F8C' }}>结论</Text>
+        <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>两条 AI 链路共享「采集—分析—反馈」主干；可视化让原本黑盒的处理过程变得可解释、可验证</Text>
+      </Box>
+    </Box>
+    <Box style={{ width: '100%', height: 40, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 40, paddingRight: 40 }}>
+      <Text style={{ fontSize: 14, color: '#8B97A8' }}>超会练 · 智能运动健康</Text>
+      <Text style={{ fontSize: 14, color: '#1E4FA8' }}>04 / 12</Text>
+    </Box>
+  </Box>
+</Slide>

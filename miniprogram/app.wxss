@@ -1,0 +1,287 @@
+/**
+ * 「超会练」全局设计系统
+ * 对齐 mobile/src/theme/tokens.ts（去 AI 味后的深色主题）
+ * 近黑底 + 单一橙红强调色 + 1px 边框 + 克制圆角
+ */
+page {
+  /* ===== 自定义 tabBar 尺寸：全项目唯一来源，改这里即可全局生效 =====
+     --tabbar-height   112rpx = .tab-item 上下 padding(14+10)
+                              + 图标(52) + 文字 margin-top(6) + 文字行高(约30)
+        改了 custom-tab-bar/index.wxss 里的图标尺寸/字号/间距，必须同步改这个值。
+     --tabbar-clearance 140rpx = tabBar 高度 + 28rpx 呼吸空间，
+        取的是「训练页」这个最苛刻的场景：底部同时有 tabBar 和悬浮的「开始训练」按钮，
+        内容必须能滚到按钮上方。其余页面统一复用这个值，避免各页面各写一套。 */
+  --tabbar-height: 112rpx;
+  --tabbar-gap: 12rpx;
+  --tabbar-clearance: 140rpx;
+
+  --primary: #FF4D2E;
+  --primary-dark: #D93A1E;
+  --accent: #FF8A5C;
+  --success: #3ECF8E;
+  --warning: #E8A33D;
+  --danger: #E5484D;
+  --background: #0D0E10;
+  --surface: #14161A;
+  --surface-light: #1A1D22;
+  --surface-hover: #21252C;
+  --border: #262A31;
+  --text: #F2F4F5;
+  --text-secondary: #9BA3AD;
+  --text-muted: #5C6570;
+
+  background: #0D0E10;
+  color: #F2F4F5;
+  font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  line-height: 1.5;
+}
+
+/* ---------- 通用容器 ---------- */
+.page {
+  min-height: 100vh;
+  background: #0D0E10;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+/* tabBar 页面底部留白：自定义 tabBar 是 position:fixed，会遮挡页面底部内容。
+   凡是可整页滚动的 tab 页都要加 .page-tab，否则滚到底也看不到最后一块内容。
+   尺寸全部引用 page 上的 CSS 变量，不再写死数字。
+   用 .page.page-tab 双类选择器，避免被页面 wxss 里的单类规则覆盖。 */
+.page.page-tab {
+  padding-bottom: calc(var(--tabbar-clearance) + env(safe-area-inset-bottom));
+}
+
+.card {
+  background: #14161A;
+  border: 1rpx solid #262A31;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.gap-sm { gap: 8rpx; }
+.gap-md { gap: 16rpx; }
+.gap-lg { gap: 24rpx; }
+
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+
+/* ---------- 文字 ---------- */
+.text-primary { color: #FF4D2E; }
+.text-accent { color: #FF8A5C; }
+.text-success { color: #3ECF8E; }
+.text-warning { color: #E8A33D; }
+.text-danger { color: #E5484D; }
+.text-secondary { color: #9BA3AD; }
+.text-muted { color: #5C6570; }
+.text-bold { font-weight: 600; }
+.text-sm { font-size: 24rpx; }
+.text-xs { font-size: 22rpx; }
+.text-lg { font-size: 34rpx; }
+.text-xl { font-size: 44rpx; }
+.text-2xl { font-size: 56rpx; }
+
+/* ---------- 按钮 ---------- */
+.btn {
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn-primary {
+  background: #FF4D2E;
+  color: #ffffff;
+}
+
+.btn-accent {
+  background: #FF8A5C;
+  color: #ffffff;
+}
+
+.btn-ghost {
+  background: #1A1D22;
+  color: #9BA3AD;
+  border: 1rpx solid #262A31;
+}
+
+.btn-danger {
+  background: #E5484D;
+  color: #ffffff;
+}
+
+.btn-disabled {
+  background: #262A31;
+  color: #5C6570;
+}
+
+.btn-sm {
+  height: 64rpx;
+  font-size: 26rpx;
+  padding: 0 28rpx;
+  display: inline-flex;
+}
+
+/* ---------- 徽章 ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 12rpx;
+  font-size: 22rpx;
+}
+
+.badge-success { background: rgba(62, 207, 142, 0.15); color: #3ECF8E; }
+.badge-primary { background: rgba(255, 77, 46, 0.15); color: #FF4D2E; }
+.badge-accent { background: rgba(255, 138, 92, 0.15); color: #FF8A5C; }
+.badge-warning { background: rgba(232, 163, 61, 0.15); color: #E8A33D; }
+.badge-muted { background: rgba(92, 101, 112, 0.15); color: #9BA3AD; }
+
+/* ---------- 输入 ---------- */
+.input {
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  color: #F2F4F5;
+  font-size: 28rpx;
+}
+
+.input-placeholder {
+  color: #5C6570;
+}
+
+/* ---------- 列表 ---------- */
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #262A31;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* ---------- 分割线 ---------- */
+.divider {
+  height: 1rpx;
+  background: #262A31;
+}
+
+/* ---------- 状态 ---------- */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+  color: #5C6570;
+  font-size: 26rpx;
+}
+
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 40rpx;
+  color: #5C6570;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+/* ---------- 骨架/占位 ---------- */
+.skeleton {
+  background: #1A1D22;
+  animation: skeleton-pulse 1.4s ease infinite;
+  border-radius: 12rpx;
+}
+
+@keyframes skeleton-pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ---------- 安全区 ---------- */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ---------- 未登录提示（游客模式） ---------- */
+.login-required {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 48rpx;
+}
+
+.login-req-icon {
+  font-size: 96rpx;
+  margin-bottom: 32rpx;
+}
+
+.login-req-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+  margin-bottom: 16rpx;
+}
+
+.login-req-desc {
+  font-size: 26rpx;
+  color: #5C6570;
+  text-align: center;
+  margin-bottom: 48rpx;
+  line-height: 1.6;
+}
+
+.login-req-btn {
+  background: #FF4D2E;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  padding: 22rpx 80rpx;
+  border-radius: 48rpx;
+}

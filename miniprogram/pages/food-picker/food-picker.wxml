@@ -1,0 +1,82 @@
+<view class="page">
+  <!-- 搜索 -->
+  <view class="search-row">
+    <input class="input flex-1" placeholder="搜索食物，如 鸡胸肉 / 米饭" placeholder-class="input-placeholder"
+           value="{{keyword}}" bindinput="onKeywordInput" confirm-type="search" bindconfirm="onSearch" />
+    <view class="btn btn-primary btn-sm" loading="{{searching}}" bindtap="onSearch">搜索</view>
+  </view>
+  <view class="hint">营养按每 100g 计，点击食物后填写实际克数</view>
+
+  <!-- 分类栏 -->
+  <scroll-view scroll-x class="group-bar" enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{groups}}" wx:key="key"
+          class="group-chip {{activeGroup === item.key ? 'group-chip-active' : ''}}"
+          data-key="{{item.key}}" bindtap="onGroupTap">{{item.label}}</view>
+  </scroll-view>
+
+  <!-- 结果列表 -->
+  <view wx:if="{{searching}}" class="loading-wrap">加载中...</view>
+  <view wx:elif="{{foods.length === 0 && keyword}}" class="empty-wrap">
+    <text class="empty-icon">🔍</text>
+    <text>没有找到食物，换个关键词试试</text>
+  </view>
+  <view wx:elif="{{foods.length === 0}}" class="empty-wrap">
+    <text class="empty-icon">🥗</text>
+    <text>食物库暂无数据，请检查网络后重试</text>
+  </view>
+
+  <view wx:for="{{foods}}" wx:key="food_id" class="card food-card" data-index="{{index}}" bindtap="onPickFood">
+    <view class="food-row">
+      <view class="flex-1">
+        <view class="food-name">{{item.name}}</view>
+        <view class="food-meta">{{item.calories}} kcal · 蛋白{{item.protein}}g · 碳水{{item.carbs}}g · 脂肪{{item.fat}}g（/100g）</view>
+      </view>
+      <view class="food-add">+</view>
+    </view>
+  </view>
+
+  <!-- 已选列表 -->
+  <view wx:if="{{picked.length > 0}}" class="card picked-card">
+    <view class="card-title"><text>已选（{{picked.length}}）</text></view>
+    <view wx:for="{{picked}}" wx:key="food_id" class="picked-row">
+      <text class="picked-name">{{item.food_name}} {{item.weight_g}}g</text>
+      <view class="picked-right">
+        <text class="picked-cal">≈ {{item.calories * item.weight_g / 100}} kcal</text>
+        <text class="picked-del" data-index="{{index}}" bindtap="onRemovePicked">✕</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-bottom-space"></view>
+
+  <!-- 克数填写弹窗 -->
+  <view wx:if="{{showWeightModal}}" class="mask" bindtap="onCloseModal">
+    <view class="modal" catchtap="noop">
+      <view class="modal-title">{{pickFood.name}}</view>
+      <view class="modal-sub">{{pickFood.calories}} kcal/100g · 蛋白{{pickFood.protein}}g · 碳水{{pickFood.carbs}}g · 脂肪{{pickFood.fat}}g</view>
+      <view class="weight-row">
+        <text class="weight-label">重量(g)</text>
+        <input class="input flex-1" type="digit" value="{{pickWeight}}" bindinput="onWeightInput" />
+      </view>
+      <view class="quick-row">
+        <view wx:for="{{[50, 100, 150, 200, 250]}}" wx:key="*this"
+              class="quick-chip {{pickWeight == item ? 'quick-chip-active' : ''}}"
+              data-w="{{item}}" bindtap="onQuickWeight">{{item}}g</view>
+      </view>
+      <view class="modal-estimate" wx:if="{{pickWeight}}">
+        ≈ {{pickFood.calories * pickWeight / 100}} kcal
+      </view>
+      <view class="space-between modal-btns">
+        <view class="btn btn-ghost btn-sm" bindtap="onCloseModal">取消</view>
+        <view class="btn btn-primary btn-sm" bindtap="onConfirmPick">加入已选</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部确认栏 -->
+  <view wx:if="{{picked.length > 0}}" class="bottom-bar safe-bottom">
+    <view class="btn btn-primary {{saving ? 'btn-disabled' : ''}}" bindtap="onConfirmAdd">
+      确认添加到{{mealLabel}}（{{picked.length}}）
+    </view>
+  </view>
+</view>

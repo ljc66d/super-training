@@ -1,0 +1,56 @@
+<view class="page">
+  <!-- 等级卡片 -->
+  <view class="card level-card">
+    <view class="level-left">
+      <view class="level-badge">{{level}}级</view>
+      <view class="level-meta">
+        <text class="level-title">健身达人 Lv.{{level}}</text>
+        <text class="level-sub">已解锁 {{unlockedCount}} 枚徽章 · {{totalBadges}} 总等级</text>
+      </view>
+    </view>
+    <view class="btn btn-ghost btn-sm" loading="{{refreshing}}" bindtap="onRefresh">刷新</view>
+  </view>
+
+  <!-- 徽章统计 -->
+  <view class="card">
+    <view class="badge-stats">
+      <view class="bstat">
+        <text class="bstat-icon"></text>
+        <text class="bstat-num text-warning">{{badgeCounts.bronze || 0}}</text>
+      </view>
+      <view class="bstat">
+        <text class="bstat-icon"></text>
+        <text class="bstat-num text-secondary">{{badgeCounts.silver || 0}}</text>
+      </view>
+      <view class="bstat">
+        <text class="bstat-icon"></text>
+        <text class="bstat-num text-warning">{{badgeCounts.gold || 0}}</text>
+      </view>
+      <view class="bstat">
+        <text class="bstat-icon"></text>
+        <text class="bstat-num text-primary">{{badgeCounts.platinum || 0}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成就列表 -->
+  <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+  <view wx:for="{{achievements}}" wx:key="code" class="card ach-card {{item.unlocked ? '' : 'ach-locked'}}">
+    <view class="ach-left">
+      <view class="ach-icon" style="opacity: {{item.unlocked ? 1 : 0.3}}">{{item.icon}}</view>
+      <view class="ach-info">
+        <view class="ach-title">
+          <text class="ach-name">{{item.title}}</text>
+          <text wx:if="{{item.unlocked}}" class="badge badge-success">已解锁</text>
+        </view>
+        <text class="ach-desc">{{item.description}}</text>
+        <view class="ach-progress-row">
+          <view class="ach-progress-track">
+            <view class="ach-progress-fill" style="width: {{item.unlocked ? 100 : (item.target ? item.progress / item.target * 100 : 0)}}%; background: {{item.color}};"></view>
+          </view>
+          <text class="ach-progress-text">{{item.progress}}/{{item.target}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

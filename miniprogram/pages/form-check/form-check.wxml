@@ -1,0 +1,53 @@
+<view class="page">
+  <view class="tab-row">
+    <view class="tab {{tab === 'actions' ? 'tab-active' : ''}}" data-key="actions" bindtap="onSelectTab">动作列表</view>
+    <view class="tab {{tab === 'records' ? 'tab-active' : ''}}" data-key="records" bindtap="onSelectTab">纠错历史</view>
+  </view>
+
+  <!-- 动作列表 -->
+  <block wx:if="{{tab === 'actions'}}">
+    <view class="card intro-card">
+      <view class="card-title"><text> AI 动作纠错</text></view>
+      <text class="intro-text">基于 HRNet 骨骼关键点识别，支持 13 个训练动作：深蹲、硬拉、卧推、实力推、杠铃划船、弓箭步、二头弯举、俯卧撑、引体向上、仰卧起坐、跳绳、波比跳、立定跳远。录制训练视频，AI 分析动作标准度并给出中文纠正建议与严重程度分级。</text>
+      <view class="btn btn-primary intro-btn" loading="{{videoLoading}}" bindtap="onVideoCheck"> 上传视频评估</view>
+    </view>
+    <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+    <view wx:for="{{actions}}" wx:key="code" class="card action-card" data-index="{{index}}" bindtap="onSelectAction">
+      <view class="space-between">
+        <text class="action-name">{{item.name}}</text>
+        <text class="badge badge-muted">{{item.category || ''}}</text>
+      </view>
+      <text wx:if="{{item.description}}" class="action-desc">{{item.description}}</text>
+    </view>
+  </block>
+
+  <!-- 历史记录 -->
+  <block wx:if="{{tab === 'records'}}">
+    <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+    <view wx:if="{{!loading && records.length === 0}}" class="empty-wrap">
+      <text class="empty-icon"></text>
+      <text>暂无纠错记录，先上传一段训练视频吧</text>
+    </view>
+    <view wx:for="{{records}}" wx:key="check_id" class="card">
+      <view class="space-between">
+        <view class="score-wrap">
+          <text class="score-num {{item.score >= 80 ? 'text-success' : (item.score >= 60 ? 'text-warning' : 'text-danger')}}">{{item.score}}</text>
+          <text class="score-den">/100</text>
+        </view>
+        <text class="record-time">{{item.time_text}}</text>
+      </view>
+      <view wx:if="{{item.level}}" class="badge badge-primary rec-level">{{item.level}}</view>
+      <view wx:for="{{item.corrections}}" wx:key="*this" wx:for-item="c" class="corr-item">• {{c}}</view>
+    </view>
+  </block>
+
+  <!-- 动作详情弹窗 -->
+  <view wx:if="{{selectedAction}}" class="mask" bindtap="onCloseDetail">
+    <view class="modal" catchtap="noop">
+      <view class="modal-title">{{selectedAction.name}}</view>
+      <view class="modal-sub">{{selectedAction.category || ''}}</view>
+      <text class="modal-text">{{selectedAction.description || '暂无说明'}}</text>
+      <view class="btn btn-primary modal-btn" bindtap="onCloseDetail">知道了</view>
+    </view>
+  </view>
+</view>

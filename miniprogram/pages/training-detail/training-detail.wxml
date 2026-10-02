@@ -1,0 +1,36 @@
+<view class="page" wx:if="{{session}}">
+  <!-- 概览 -->
+  <view class="card">
+    <view class="space-between">
+      <text class="detail-title">{{session.sport_name || '训练'}}</text>
+      <text class="badge badge-primary">{{session.category || ''}}</text>
+    </view>
+    <view class="detail-time">{{session.time_text}}</view>
+    <view class="detail-stats">
+      <view class="dstat">
+        <text class="dstat-value text-primary">{{session.duration || 0}}min</text>
+        <text class="dstat-label">时长</text>
+      </view>
+      <view class="dstat">
+        <text class="dstat-value text-success">{{totalVolume}}kg</text>
+        <text class="dstat-label">容量</text>
+      </view>
+      <view class="dstat">
+        <text class="dstat-value text-accent">{{session.calories_text}}</text>
+        <text class="dstat-label">消耗kcal</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 动作明细 -->
+  <view class="card">
+    <view class="card-title"><text>动作明细（{{exercises.length}}个动作 · {{totalSets}}组）</text></view>
+    <view wx:if="{{exercises.length === 0}}" class="empty-inline">本次训练无动作记录</view>
+    <view wx:for="{{exercises}}" wx:key="exercise_name" wx:for-item="ex" class="ex-block">
+      <view class="ex-line">
+        <text class="ex-name">{{ex.exercise_name}}</text>
+        <text class="ex-detail">{{ex.sets || 1}}组 × {{ex.reps || 0}}次 × {{ex.weight_kg || 0}}kg</text>
+      </view>
+    </view>
+  </view>
+</view>

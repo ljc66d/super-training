@@ -1,0 +1,32 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', flexDirection: 'row', background: '#FFFFFF' }}>
+    <Box style={{ width: 460, height: '100%', background: '#0E3F8C', flexDirection: 'column', justifyContent: 'center', paddingLeft: 60, gap: 16 }}>
+      <Text style={{ fontSize: 18, color: '#E8EFF8', letterSpacing: 6 }}>CONTENTS</Text>
+      <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#FFFFFF' }}>目录</Text>
+      <Box style={{ width: 48, height: 4, background: '#3D7BD9', marginTop: 8 }} />
+    </Box>
+    <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', paddingLeft: 80, paddingRight: 80, gap: 52 }}>
+      <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 28 }}>
+        <Text style={{ fontSize: 44, fontWeight: 'bold', color: '#1E4FA8' }}>01</Text>
+        <Box style={{ flexDirection: 'column', gap: 6 }}>
+          <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#1A2230' }}>技术总览</Text>
+          <Text style={{ fontSize: 18, color: '#8B97A8' }}>一张图看懂产品的采集—分析—反馈链路</Text>
+        </Box>
+      </Box>
+      <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 28 }}>
+        <Text style={{ fontSize: 44, fontWeight: 'bold', color: '#1E4FA8' }}>02</Text>
+        <Box style={{ flexDirection: 'column', gap: 6 }}>
+          <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#1A2230' }}>AI 动作纠错</Text>
+          <Text style={{ fontSize: 18, color: '#8B97A8' }}>从视频到评分纠错的全流程与模型选型</Text>
+        </Box>
+      </Box>
+      <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 28 }}>
+        <Text style={{ fontSize: 44, fontWeight: 'bold', color: '#1E4FA8' }}>03</Text>
+        <Box style={{ flexDirection: 'column', gap: 6 }}>
+          <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#1A2230' }}>AI 食物识别</Text>
+          <Text style={{ fontSize: 18, color: '#8B97A8' }}>从照片到营养数据的云 + 端双模型链路</Text>
+        </Box>
+      </Box>
+    </Box>
+  </Box>
+</Slide>

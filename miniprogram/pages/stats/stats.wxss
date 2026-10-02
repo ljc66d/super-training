@@ -1,0 +1,325 @@
+.days-row {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.chip {
+  padding: 10rpx 32rpx;
+  border-radius: 999rpx;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  font-size: 24rpx;
+  color: #9BA3AD;
+}
+
+.chip-active {
+  background: #FF4D2E;
+  border-color: #FF4D2E;
+  color: #fff;
+  font-weight: 600;
+}
+
+.summary-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.summary-item {
+  flex: 1;
+  background: #1A1D22;
+  border-radius: 16rpx;
+  padding: 20rpx 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-value {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.summary-label {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 6rpx;
+}
+
+.title-sum {
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.metric-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 24rpx;
+}
+
+.mchip {
+  padding: 8rpx 22rpx;
+  border-radius: 999rpx;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  font-size: 22rpx;
+  color: #9BA3AD;
+}
+
+.mchip-active {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: #FF4D2E;
+  color: #FF4D2E;
+  font-weight: 600;
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6rpx;
+  height: 280rpx;
+  position: relative;
+}
+
+.bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar-track {
+  flex: 1;
+  width: 100%;
+  max-width: 36rpx;
+  display: flex;
+  align-items: flex-end;
+  background: #1A1D22;
+  border-radius: 8rpx 8rpx 0 0;
+  overflow: hidden;
+}
+
+.bar {
+  width: 100%;
+  border-radius: 8rpx 8rpx 0 0;
+}
+
+.bar-primary {
+  background: linear-gradient(180deg, #FF4D2E, #D93A1E);
+}
+
+.bar-accent {
+  background: linear-gradient(180deg, #FF8A5C, #C2410C);
+}
+
+.bar-val {
+  font-size: 16rpx;
+  color: #5C6570;
+  margin-top: 6rpx;
+  white-space: nowrap;
+}
+
+.chart-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5C6570;
+  font-size: 24rpx;
+}
+
+/* 疲劳管理卡片 */
+.fatigue-main {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.fatigue-score-wrap {
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+
+.fatigue-num {
+  font-size: 76rpx;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fatigue-total {
+  font-size: 24rpx;
+  color: #5C6570;
+  margin-left: 6rpx;
+}
+
+.fatigue-status {
+  flex: 1;
+  min-width: 0;
+}
+
+.fatigue-status-text {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.fatigue-advice {
+  font-size: 24rpx;
+  color: #9BA3AD;
+  line-height: 1.55;
+}
+
+.fatigue-dims {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.fatigue-dim {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1A1D22;
+  border-radius: 12rpx;
+  padding: 14rpx 20rpx;
+}
+
+.fatigue-dim-label {
+  font-size: 24rpx;
+  color: #5C6570;
+}
+
+.fatigue-dim-val {
+  font-size: 24rpx;
+  color: #E8EAED;
+}
+
+.fatigue-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.fatigue-tip {
+  position: relative;
+  padding-left: 22rpx;
+  font-size: 24rpx;
+  color: #E8EAED;
+  line-height: 1.55;
+}
+
+.fatigue-tip::before {
+  content: '·';
+  position: absolute;
+  left: 4rpx;
+  color: #FF4D2E;
+  font-weight: 700;
+}
+
+.fatigue-warning {
+  margin-top: 20rpx;
+  background: rgba(255, 77, 46, 0.1);
+  border: 1rpx solid rgba(255, 77, 46, 0.35);
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  font-size: 24rpx;
+  color: #FF7A5C;
+  line-height: 1.55;
+}
+
+.fatigue-empty {
+  font-size: 26rpx;
+  color: #9BA3AD;
+  line-height: 1.6;
+  padding: 8rpx 0;
+}
+
+/* 静息心率 */
+.hr-latest-row {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.hr-latest {
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+
+.hr-latest-num {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #F2F4F5;
+  line-height: 1;
+}
+
+.hr-latest-unit {
+  font-size: 24rpx;
+  color: #5C6570;
+  margin-left: 6rpx;
+}
+
+.hr-latest-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.hr-change {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.hr-date {
+  font-size: 22rpx;
+  color: #5C6570;
+}
+
+.hr-history {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.hr-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1A1D22;
+  border-radius: 12rpx;
+  padding: 14rpx 20rpx;
+}
+
+.hr-history-date {
+  font-size: 24rpx;
+  color: #5C6570;
+}
+
+.hr-history-val {
+  font-size: 26rpx;
+  color: #E8EAED;
+  font-weight: 600;
+}
+
+/* 折线图 canvas */
+.line-chart {
+  width: 100%;
+  height: 320rpx;
+  margin-top: 16rpx;
+}
+
+.chart-empty-hint {
+  font-size: 24rpx;
+  color: #5C6570;
+  padding: 24rpx 0;
+  line-height: 1.6;
+}

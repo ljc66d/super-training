@@ -1,0 +1,150 @@
+<view class="page">
+  <!-- 周期切换 -->
+  <view class="days-row">
+    <view
+      wx:for="{{daysOptions}}"
+      wx:key="*this"
+      class="chip {{days === item ? 'chip-active' : ''}}"
+      data-days="{{item}}"
+      bindtap="onSelectDays"
+    >{{item}}天</view>
+  </view>
+
+  <block wx:if="{{!loading && trend}}">
+    <!-- 疲劳管理 -->
+    <view wx:if="{{fatigue}}" class="card fatigue-card">
+      <view class="card-title"><text>疲劳管理</text></view>
+      <block wx:if="{{fatigue.level !== 'insufficient'}}">
+        <view class="fatigue-main">
+          <view class="fatigue-score-wrap">
+            <text class="fatigue-num {{fatigue.levelClass}}">{{fatigue.score}}</text>
+            <text class="fatigue-total">/100</text>
+          </view>
+          <view class="fatigue-status">
+            <text class="fatigue-status-text {{fatigue.levelClass}}">{{fatigue.status}}</text>
+            <text class="fatigue-advice">{{fatigue.advice}}</text>
+          </view>
+        </view>
+        <view class="fatigue-tips" wx:if="{{fatigue.tips && fatigue.tips.length}}">
+          <view class="fatigue-tip" wx:for="{{fatigue.tips}}" wx:key="*this">{{item}}</view>
+        </view>
+        <view class="fatigue-dims">
+          <view class="fatigue-dim">
+            <text class="fatigue-dim-label">训练负荷</text>
+            <text class="fatigue-dim-val">{{fatigue.acwr_label}}</text>
+          </view>
+          <view class="fatigue-dim">
+            <text class="fatigue-dim-label">静息心率</text>
+            <text class="fatigue-dim-val">{{fatigue.hr_label}}</text>
+          </view>
+          <view class="fatigue-dim">
+            <text class="fatigue-dim-label">营养恢复</text>
+            <text class="fatigue-dim-val">{{fatigue.diet_label}}</text>
+          </view>
+        </view>
+        <view class="fatigue-warning" wx:if="{{fatigue.warning}}">{{fatigue.warning}}</view>
+      </block>
+      <view wx:else class="fatigue-empty">{{fatigue.advice}}</view>
+    </view>
+
+    <!-- 静息心率 -->
+    <view wx:if="{{latestHr}}" class="card">
+      <view class="card-title"><text>静息心率</text></view>
+      <view class="hr-latest-row">
+        <view class="hr-latest">
+          <text class="hr-latest-num">{{latestHr.hr}}</text>
+          <text class="hr-latest-unit">bpm</text>
+        </view>
+        <view class="hr-latest-meta">
+          <text wx:if="{{latestHr.change != null}}" class="hr-change {{latestHr.change > 0 ? 'text-danger' : 'text-success'}}">
+            {{latestHr.change > 0 ? '↑ +' + latestHr.change : (latestHr.change < 0 ? '↓ ' + latestHr.change : '持平')}}
+          </text>
+          <text class="hr-date">较上次记录 · {{latestHr.date}}</text>
+        </view>
+      </view>
+      <canvas type="2d" id="hrChart" class="line-chart"></canvas>
+    </view>
+
+    <!-- 训练 RPE 均值 -->
+    <view class="card">
+      <view class="card-title"><text>训练 RPE 均值</text></view>
+      <view wx:if="{{hasRpe}}">
+        <canvas type="2d" id="rpeChart" class="line-chart"></canvas>
+      </view>
+      <view wx:else class="chart-empty-hint">暂无 RPE 数据，训练后记录主观强度这里会展示均值趋势</view>
+    </view>
+
+    <!-- 训练总览 -->
+    <view class="card">
+      <view class="card-title"><text> 训练总览</text></view>
+      <view class="summary-row">
+        <view class="summary-item">
+          <text class="summary-value text-primary">{{stats ? stats.session_count : 0}}</text>
+          <text class="summary-label">总次数</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-value text-accent">{{stats ? stats.duration_text : 0}}</text>
+          <text class="summary-label">总时长min</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-value text-success">{{stats ? stats.volume_text : 0}}</text>
+          <text class="summary-label">总容量kg</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 训练趋势 -->
+    <view class="card">
+      <view class="card-title">
+        <text>训练趋势</text>
+        <text class="title-sum text-warning">合计 {{trainSum}} {{trainUnit}}</text>
+      </view>
+      <view class="metric-tabs">
+        <view
+          wx:for="{{trainMetrics}}"
+          wx:key="key"
+          class="mchip {{trainKey === item.key ? 'mchip-active' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="onSelectTrainMetric"
+        >{{item.label}}</view>
+      </view>
+      <view class="chart">
+        <view wx:for="{{trainBars}}" wx:key="index" class="bar-wrap">
+          <view class="bar-track">
+            <view class="bar bar-primary" style="height: {{item.h}}%;"></view>
+          </view>
+          <text class="bar-val">{{item.v}}</text>
+        </view>
+        <view wx:if="{{trainBars.length === 0}}" class="chart-empty">暂无训练数据</view>
+      </view>
+    </view>
+
+    <!-- 饮食趋势 -->
+    <view class="card">
+      <view class="card-title">
+        <text>饮食趋势</text>
+        <text class="title-sum text-warning">合计 {{dietSum}} {{dietUnit}}</text>
+      </view>
+      <view class="metric-tabs">
+        <view
+          wx:for="{{dietMetrics}}"
+          wx:key="key"
+          class="mchip {{dietKey === item.key ? 'mchip-active' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="onSelectDietMetric"
+        >{{item.label}}</view>
+      </view>
+      <view class="chart">
+        <view wx:for="{{dietBars}}" wx:key="index" class="bar-wrap">
+          <view class="bar-track">
+            <view class="bar bar-accent" style="height: {{item.h}}%;"></view>
+          </view>
+          <text class="bar-val">{{item.v}}</text>
+        </view>
+        <view wx:if="{{dietBars.length === 0}}" class="chart-empty">暂无饮食数据</view>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+</view>

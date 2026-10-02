@@ -1,0 +1,91 @@
+<view class="page">
+  <!-- Tab -->
+  <view class="tab-row">
+    <view wx:for="{{tabs}}" wx:key="key"
+          class="tab {{tab === item.key ? 'tab-active' : ''}}"
+          data-key="{{item.key}}" bindtap="onSelectTab">{{item.label}}</view>
+  </view>
+
+  <!-- 官方计划 -->
+  <block wx:if="{{tab === 'official'}}">
+    <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+    <view wx:for="{{official}}" wx:key="plan_id" class="card plan-card">
+      <view class="space-between">
+        <text class="plan-title">{{item.title}}</text>
+        <text class="badge badge-primary">{{item.goal_label}}</text>
+      </view>
+      <view class="plan-meta">
+        <text wx:if="{{item.weekly_text}}">{{item.weekly_text}}</text>
+        <text wx:if="{{item.days_count}}"> · {{item.days_count}}天计划</text>
+        <text wx:if="{{item.difficulty}}"> · {{item.difficulty}}</text>
+      </view>
+      <text wx:if="{{item.description}}" class="plan-desc">{{item.description}}</text>
+    </view>
+  </block>
+
+  <!-- 专项备赛 -->
+  <block wx:if="{{tab === 'specialty'}}">
+    <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+    <view wx:for="{{specialty}}" wx:key="plan_id" class="card plan-card">
+      <view class="space-between">
+        <text class="plan-title">{{item.title}}</text>
+        <text class="badge badge-accent">{{item.goal_label}}</text>
+      </view>
+      <view class="plan-meta">
+        <text>{{item.weekly_text}}</text>
+        <text wx:if="{{item.days_count}}"> · {{item.days_count}}天</text>
+      </view>
+      <text wx:if="{{item.description}}" class="plan-desc">{{item.description}}</text>
+      <view class="btn btn-primary btn-sm adopt-btn" data-id="{{item.plan_id}}" data-name="{{item.title}}" bindtap="onAdopt">领用模板</view>
+    </view>
+  </block>
+
+  <!-- 我的计划 -->
+  <block wx:if="{{tab === 'mine'}}">
+    <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+    <view wx:if="{{!loading && mine.length === 0}}" class="empty-wrap">
+      <text class="empty-icon"></text>
+      <text>还没有计划，去生成一个吧</text>
+    </view>
+    <view wx:for="{{mine}}" wx:key="plan_id" class="card plan-card">
+      <view class="space-between">
+        <text class="plan-title">{{item.title}}</text>
+        <text class="badge badge-success">{{item.goal_label || '自定义'}}</text>
+      </view>
+      <view class="plan-meta">
+        <text wx:if="{{item.weekly_text}}">{{item.weekly_text}}</text>
+        <text wx:if="{{item.days_count}}"> · {{item.days_count}}天</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- AI 生成 -->
+  <block wx:if="{{tab === 'ai'}}">
+    <view class="card">
+      <view class="card-title"><text> 训练目标</text></view>
+      <view class="chip-wrap">
+        <view wx:for="{{goals}}" wx:key="key"
+              class="chip {{aiGoal === item.key ? 'chip-active' : ''}}"
+              data-key="{{item.key}}" bindtap="onSelectGoal">{{item.label}}</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-title"><text> 训练水平</text></view>
+      <view class="chip-wrap">
+        <view wx:for="{{levels}}" wx:key="key"
+              class="chip {{aiLevel === item.key ? 'chip-active' : ''}}"
+              data-key="{{item.key}}" bindtap="onSelectLevel">{{item.label}}</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="card-title"><text> 每周天数</text></view>
+      <view class="days-stepper">
+        <view class="step-btn" bindtap="onDaysMinus">−</view>
+        <text class="days-value">{{aiDays}} 天</text>
+        <view class="step-btn" bindtap="onDaysPlus">＋</view>
+      </view>
+    </view>
+    <view class="btn btn-primary" loading="{{aiGenerating}}" bindtap="onAiGenerate"> 生成我的训练计划</view>
+    <view class="ai-tip">AI 将基于你的目标、水平与频率生成周期化训练计划，保存后可随时查看</view>
+  </block>
+</view>

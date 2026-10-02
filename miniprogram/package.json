@@ -1,0 +1,13 @@
+{
+  "name": "super-training-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "超会练微信小程序（原生 TypeScript，复用 FastAPI 后端）",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^3.12.2",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,15 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 16, background: '#1E4FA8' }} />
+    <Box style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 28 }}>
+      <Text style={{ fontSize: 22, color: '#3D7BD9', letterSpacing: 8 }}>AI 技术可视化</Text>
+      <Text style={{ fontSize: 52, fontWeight: 'bold', color: '#0E3F8C' }}>从黑盒到可解释</Text>
+      <Box style={{ width: 140, height: 4, background: '#1E4FA8', borderRadius: 2 }} />
+      <Text style={{ fontSize: 24, color: '#4A5568' }}>超会练 · 动作纠错与食物识别的过程与模型</Text>
+    </Box>
+    <Box style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingBottom: 24, paddingLeft: 120, paddingRight: 120 }}>
+      <Text style={{ fontSize: 16, color: '#8B97A8' }}>超会练 · 智能运动健康小程序</Text>
+      <Text style={{ fontSize: 16, color: '#8B97A8' }}>2026 中国国际大学生创新大赛（产业赛道）</Text>
+    </Box>
+  </Box>
+</Slide>

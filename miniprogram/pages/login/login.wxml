@@ -1,0 +1,78 @@
+<view class="login-page">
+  <view class="brand">
+    <image class="brand-logo-img" src="/assets/logo.jpg" mode="aspectFit" />
+    <view class="brand-name">超会练</view>
+    <view class="brand-slogan">训练数据管理</view>
+  </view>
+
+  <!-- 微信登录 -->
+  <block wx:if="{{mode === 'wechat'}}">
+    <!-- 头像 + 昵称：微信已限制 getUserProfile，官方推荐 chooseAvatar 按钮 + nickname 类型输入框 -->
+    <view class="profile-setup">
+      <button class="avatar-btn" open-type="chooseAvatar" hover-class="none" bindchooseavatar="onChooseAvatar">
+        <image wx:if="{{avatarUrl}}" class="avatar-btn-img" src="{{avatarUrl}}" mode="aspectFill" />
+        <text wx:else class="avatar-btn-tip">选头像</text>
+      </button>
+      <input class="input nickname-input" type="nickname" placeholder="点击填写昵称（可选）"
+             placeholder-class="input-placeholder" value="{{nickname}}"
+             data-field="nickname" bindinput="onInput" bindblur="onNicknameBlur" />
+    </view>
+    <button class="btn btn-primary btn-wechat" hover-class="none" loading="{{loading}}" bindtap="onWechatLogin">
+      <text class="wechat-icon">Ⓦ</text> 微信登录
+    </button>
+    <view class="divider-row">
+      <view class="divider-line"></view>
+      <text class="divider-text">或使用账号</text>
+      <view class="divider-line"></view>
+    </view>
+    <button class="btn btn-ghost" hover-class="none" bindtap="onSwitchMode">账号密码登录</button>
+  </block>
+
+  <!-- 账号密码登录 / 注册 -->
+  <block wx:else>
+    <view class="form">
+      <input class="input" placeholder="用户名（3-32位）" placeholder-class="input-placeholder"
+             value="{{username}}" data-field="username" bindinput="onInput" />
+      <input class="input" password placeholder="{{isRegister ? '密码（至少6位）' : '密码'}}"
+             placeholder-class="input-placeholder"
+             value="{{password}}" data-field="password" bindinput="onInput" />
+      <input wx:if="{{isRegister}}" class="input" placeholder="昵称（可选）"
+             placeholder-class="input-placeholder"
+             value="{{nickname}}" data-field="nickname" bindinput="onInput" />
+      <button class="btn btn-primary" hover-class="none" loading="{{loading}}" bindtap="onSubmit">
+        {{isRegister ? '注 册' : '登 录'}}
+      </button>
+    </view>
+    <view class="form-links">
+      <text class="link" bindtap="onToggleRegister">{{isRegister ? '已有账号？去登录' : '没有账号？去注册'}}</text>
+      <text class="link" bindtap="onSwitchMode">返回微信登录</text>
+    </view>
+  </block>
+
+  <!-- 隐私协议勾选（默认未勾选，需用户主动同意） -->
+  <view class="agreement-row">
+    <view class="checkbox {{agreed ? 'checkbox-checked' : ''}}" bindtap="onToggleAgree">
+      <text wx:if="{{agreed}}" class="checkbox-tick">✓</text>
+    </view>
+    <view class="agreement-texts">
+      <text class="agreement-plain">我已阅读并同意</text>
+      <text class="agreement-link" data-type="service" bindtap="onShowAgreement">《用户服务协议》</text>
+      <text class="agreement-plain">和</text>
+      <text class="agreement-link" data-type="privacy" bindtap="onShowAgreement">《隐私政策》</text>
+    </view>
+  </view>
+
+  <!-- 协议内容弹窗 -->
+  <view wx:if="{{showAgreement}}" class="mask" bindtap="onCloseAgreement">
+    <view class="agreement-modal" catchtap="noop">
+      <view class="agreement-modal-title">{{agreementTitle}}</view>
+      <scroll-view scroll-y class="agreement-scroll">
+        <text class="agreement-content">{{agreementContent}}</text>
+      </scroll-view>
+      <view class="agreement-modal-btns">
+        <view class="btn btn-ghost btn-sm" bindtap="onCloseAgreement">关闭</view>
+        <view class="btn btn-primary btn-sm" bindtap="onCloseAgreement">我已阅读</view>
+      </view>
+    </view>
+  </view>
+</view>

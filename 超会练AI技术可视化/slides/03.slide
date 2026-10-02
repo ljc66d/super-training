@@ -1,0 +1,20 @@
+<Slide>
+  <Box style={{ width: '100%', height: '100%', background: '#FFFFFF', flexDirection: 'column' }}>
+    <Box style={{ width: '100%', height: 16, background: '#1E4FA8' }} />
+    <Box style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 100, paddingRight: 100 }}>
+      <Box style={{ width: 420, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 200, fontWeight: 'bold', color: '#0E3F8C' }}>01</Text>
+      </Box>
+      <Box style={{ flex: 1, flexDirection: 'column', gap: 24 }}>
+        <Text style={{ fontSize: 48, fontWeight: 'bold', color: '#1A2230' }}>技术总览</Text>
+        <Box style={{ width: 64, height: 4, background: '#1E4FA8' }} />
+        <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.6 }}>
+          一条链路贯穿 <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>「采集 → 云端分析 → 智能反馈」</span>，让评委一眼看懂产品怎么工作
+        </Text>
+        <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.6 }}>
+          两大 AI 能力：<span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>动作纠错</span> 与 <span style={{ fontWeight: 'bold', color: '#1E4FA8' }}>食物识别</span>，均可在下一章逐步拆解
+        </Text>
+      </Box>
+    </Box>
+  </Box>
+</Slide>

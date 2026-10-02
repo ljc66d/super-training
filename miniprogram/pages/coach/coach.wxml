@@ -1,0 +1,85 @@
+<view class="page">
+  <!-- 未开通教练 -->
+  <view wx:if="{{!isCoach}}" class="empty-wrap coach-intro">
+    <text class="empty-icon"></text>
+    <text class="intro-title">教练工作台</text>
+    <text class="intro-sub">管理学员、分发训练计划、查看学员训练与饮食数据复盘</text>
+    <view class="btn btn-primary intro-btn" bindtap="onBecomeCoach">成为教练</view>
+  </view>
+
+  <!-- 教练工作台 -->
+  <block wx:if="{{isCoach}}">
+    <view class="tab-row">
+      <view class="tab {{tab === 'students' ? 'tab-active' : ''}}" data-key="students" bindtap="onSelectTab">学员管理</view>
+      <view class="tab {{tab === 'summary' ? 'tab-active' : ''}}" data-key="summary" bindtap="onSelectTab">数据复盘</view>
+    </view>
+
+    <!-- 学员列表 -->
+    <block wx:if="{{tab === 'students'}}">
+      <view class="add-btn-row">
+        <view class="btn btn-primary btn-sm" bindtap="onOpenAdd">＋ 添加学员</view>
+      </view>
+      <view wx:if="{{loading}}" class="loading-wrap">加载中...</view>
+      <view wx:if="{{!loading && students.length === 0}}" class="empty-wrap">
+        <text class="empty-icon"></text>
+        <text>还没有学员</text>
+      </view>
+      <view wx:for="{{students}}" wx:key="student_id" class="card student-card">
+        <view class="space-between">
+          <view>
+            <text class="student-name">{{item.nickname || item.username || item.student_id}}</text>
+            <text wx:if="{{item.note}}" class="student-note">{{item.note}}</text>
+          </view>
+          <view class="btn btn-ghost btn-sm" data-id="{{item.student_id}}" data-name="{{item.nickname || item.username}}" bindtap="onViewSummary">复盘</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 学员复盘 -->
+    <block wx:if="{{tab === 'summary'}}">
+      <view wx:if="{{!summary}}" class="empty-wrap">
+        <text class="empty-icon"></text>
+        <text>选择一名学员查看数据复盘</text>
+      </view>
+      <block wx:if="{{summary}}">
+        <view class="card">
+          <view class="space-between">
+            <text class="student-name">{{summary.student_name}}</text>
+            <view class="badge badge-primary">{{summary.level_text}}</view>
+          </view>
+        </view>
+        <view class="card">
+          <view class="card-title"><text> 训练</text></view>
+          <view class="sum-row">
+            <view class="sum-item"><text class="sum-value text-primary">{{summary.session_count || 0}}</text><text class="sum-label">总次数</text></view>
+            <view class="sum-item"><text class="sum-value text-accent">{{summary.total_duration_min || 0}}</text><text class="sum-label">总时长min</text></view>
+            <view class="sum-item"><text class="sum-value text-success">{{summary.total_volume_kg || 0}}</text><text class="sum-label">总容量kg</text></view>
+          </view>
+        </view>
+        <view class="card">
+          <view class="card-title"><text> 饮食</text></view>
+          <view class="sum-row">
+            <view class="sum-item"><text class="sum-value text-warning">{{summary.avg_calories || 0}}</text><text class="sum-label">日均摄入kcal</text></view>
+            <view class="sum-item"><text class="sum-value text-success">{{summary.avg_protein || 0}}</text><text class="sum-label">日均蛋白g</text></view>
+          </view>
+        </view>
+        <view class="btn btn-ghost" bindtap="onBackToList">← 返回学员列表</view>
+      </block>
+    </block>
+  </block>
+
+  <!-- 添加学员弹窗 -->
+  <view wx:if="{{showAdd}}" class="mask" bindtap="onCloseAdd">
+    <view class="modal" catchtap="noop">
+      <view class="modal-title">添加学员</view>
+      <input class="input" placeholder="学员ID（在其「我的」页查看）" placeholder-class="input-placeholder"
+             value="{{studentId}}" bindinput="onStudentIdInput" />
+      <input class="input modal-gap" placeholder="备注（可选）" placeholder-class="input-placeholder"
+             value="{{studentNote}}" bindinput="onStudentNoteInput" />
+      <view class="space-between modal-btns">
+        <view class="btn btn-ghost btn-sm" bindtap="onCloseAdd">取消</view>
+        <view class="btn btn-primary btn-sm" loading="{{adding}}" bindtap="onAddStudent">添加</view>
+      </view>
+    </view>
+  </view>
+</view>

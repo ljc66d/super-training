@@ -1,0 +1,133 @@
+.cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.cal-nav {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  color: #9BA3AD;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+}
+
+.cal-week {
+  display: flex;
+  margin-bottom: 8rpx;
+}
+
+.cal-week-cell {
+  flex: 1;
+  text-align: center;
+  font-size: 22rpx;
+  color: #5C6570;
+  padding: 8rpx 0;
+}
+
+.cal-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cal-cell {
+  width: calc(100% / 7);
+  height: 88rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #E2E8F0;
+  border-radius: 12rpx;
+  position: relative;
+}
+
+.cal-blank {
+  visibility: hidden;
+}
+
+.cal-selected {
+  background: #FF4D2E;
+  color: #fff;
+  font-weight: 700;
+}
+
+.cal-record .cal-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: #3ECF8E;
+  margin-top: 4rpx;
+}
+
+.cal-selected .cal-dot {
+  background: #fff;
+}
+
+.day-sum {
+  display: flex;
+  gap: 12rpx;
+}
+
+.sum-item {
+  flex: 1;
+  background: #1A1D22;
+  border-radius: 16rpx;
+  padding: 20rpx 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sum-value {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.sum-label {
+  font-size: 20rpx;
+  color: #5C6570;
+  margin-top: 6rpx;
+}
+
+.empty-inline {
+  color: #5C6570;
+  font-size: 26rpx;
+  text-align: center;
+  padding: 24rpx 0;
+}
+
+.rec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #262A31;
+}
+
+.rec-item:last-child {
+  border-bottom: none;
+}
+
+.rec-food {
+  font-size: 26rpx;
+  color: #F2F4F5;
+}
+
+.rec-cal {
+  font-size: 26rpx;
+  color: #FF8A5C;
+  font-weight: 600;
+}

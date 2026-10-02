@@ -1,0 +1,139 @@
+<view class="page home-page page-tab">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-title">
+      <text class="header-hello">你 </text>
+      <text class="header-name">超会练</text>
+      <text class="header-hello" wx:if="{{loggedIn}}">，{{user.nickname || '健身达人'}}。</text>
+      <text class="header-hello" wx:else>，欢迎体验。</text>
+    </view>
+    <view class="avatar" bindtap="onAvatarTap">
+      <text>{{userInitial}}</text>
+    </view>
+  </view>
+
+  <!-- 未登录提示 -->
+  <view class="guest-banner" wx:if="{{!loggedIn}}">
+    <view class="guest-banner-text">
+      <text class="guest-banner-title">登录后体验完整功能</text>
+      <text class="guest-banner-desc">记录训练饮食、AI计划、动作纠错</text>
+    </view>
+    <view class="guest-banner-btn" bindtap="goLogin">登录</view>
+  </view>
+
+  <!-- 今日热量闭环（登录后显示） -->
+  <view class="card" wx:if="{{loggedIn}}">
+    <view class="card-title">
+      <text>今日热量闭环</text>
+      <view wx:if="{{!loading}}" class="badge badge-success">实时</view>
+    </view>
+    <view class="stats-row">
+      <view class="stat">
+        <text class="stat-icon"></text>
+        <text class="stat-value">{{today ? today.today_tdee : '—'}}</text>
+        <text class="stat-label">总消耗</text>
+      </view>
+      <view class="stat">
+        <text class="stat-icon"></text>
+        <text class="stat-value">{{today ? today.food_calories_intake : '—'}}</text>
+        <text class="stat-label">饮食摄入</text>
+      </view>
+      <view class="stat stat-flex2">
+        <text class="stat-icon">{{balance > 0 ? '' : ''}}</text>
+        <text class="stat-value {{balance > 0 ? 'text-warning' : 'text-success'}}">
+          {{today ? today.calorie_balance : '—'}}
+        </text>
+        <text class="stat-label">热量差</text>
+      </view>
+    </view>
+    <view wx:if="{{today.target_intake_calories}}" class="calorie-hint">
+      今日目标摄入 {{today.target_intake_calories}} kcal · 训练消耗 {{today.training_calories_burned || 0}} kcal
+    </view>
+  </view>
+
+  <!-- 快捷操作（需登录） -->
+  <view class="quick-actions">
+    <view class="quick-action quick-primary" bindtap="requireAuth" data-url="/pages/training/training" data-feature="训练记录">
+      <text class="qa-icon"></text>
+      <text class="qa-title">开始训练</text>
+      <text class="qa-sub">记录训练</text>
+    </view>
+    <view class="quick-action quick-accent" bindtap="requireAuth" data-url="/pages/diet/diet" data-feature="饮食记录">
+      <text class="qa-icon"></text>
+      <text class="qa-title">记录饮食</text>
+      <text class="qa-sub">营养计算</text>
+    </view>
+  </view>
+
+  <!-- 快捷功能 -->
+  <view class="func-title">快捷功能</view>
+  <view class="func-grid">
+    <view class="func-item" bindtap="requireAuth" data-url="/pages/session-list/session-list" data-feature="训练记录">
+      <text class="func-icon"></text>
+      <text class="func-label">训练记录</text>
+    </view>
+    <view class="func-item" bindtap="requireAuth" data-url="/pages/diet-calendar/diet-calendar" data-feature="饮食日历">
+      <text class="func-icon"></text>
+      <text class="func-label">饮食日历</text>
+    </view>
+    <view class="func-item" bindtap="requireAuth" data-url="/pages/plan/plan" data-feature="AI计划">
+      <text class="func-icon"></text>
+      <text class="func-label">AI计划</text>
+    </view>
+    <view class="func-item" bindtap="requireAuth" data-url="/pages/form-check/form-check" data-feature="AI动作纠错">
+      <text class="func-icon"></text>
+      <text class="func-label">动作纠错</text>
+    </view>
+    <view class="func-item" bindtap="requireAuth" data-url="/pages/stats/stats" data-feature="数据复盘">
+      <text class="func-icon"></text>
+      <text class="func-label">数据复盘</text>
+    </view>
+    <!-- 动作库：游客可浏览 -->
+    <view class="func-item" bindtap="go" data-url="/pages/exercise-library/exercise-library">
+      <text class="func-icon"></text>
+      <text class="func-label">动作库</text>
+    </view>
+    <view class="func-item" bindtap="requireAuth" data-url="/pages/achievement/achievement" data-feature="成就">
+      <text class="func-icon"></text>
+      <text class="func-label">成就</text>
+    </view>
+  </view>
+
+  <!-- 今日状态（登录后显示） -->
+  <view class="card" wx:if="{{loggedIn}}">
+    <view class="card-title"><text>今日状态</text></view>
+    <view class="stats-row">
+      <view class="stat">
+        <text class="stat-icon"></text>
+        <text class="stat-value">{{today ? today.session_count : 0}}</text>
+        <text class="stat-label">训练</text>
+      </view>
+      <view class="stat">
+        <text class="stat-icon"></text>
+        <text class="stat-value">{{today && today.intake ? today.intake.protein : 0}}</text>
+        <text class="stat-label">蛋白 g</text>
+      </view>
+      <view class="stat">
+        <text class="stat-icon"></text>
+        <text class="stat-value">{{today && today.intake ? today.intake.carbs : 0}}</text>
+        <text class="stat-label">碳水 g</text>
+      </view>
+      <view class="stat">
+        <text class="stat-icon"></text>
+        <text class="stat-value">{{today && today.intake ? today.intake.fat : 0}}</text>
+        <text class="stat-label">脂肪 g</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 每日静息心率（登录后显示） -->
+  <view class="card" wx:if="{{loggedIn}}">
+    <view class="card-title"><text>每日静息心率</text></view>
+    <view class="add-row">
+      <input class="input flex-1" type="digit" placeholder="晨起静息心率(bpm)，如 60" placeholder-class="input-placeholder"
+             value="{{restingHr}}" bindinput="onRestingHrInput" />
+      <view class="btn btn-primary btn-sm" loading="{{hrSaving}}" bindtap="onSaveRestingHr">记录</view>
+    </view>
+    <view class="hr-tip">用于疲劳评估：静息心率持续偏高，提示身体可能未完全恢复</view>
+  </view>
+</view>

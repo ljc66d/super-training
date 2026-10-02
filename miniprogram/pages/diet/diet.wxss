@@ -1,0 +1,276 @@
+.date-pick {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+}
+
+.meal-row {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.chip {
+  padding: 10rpx 28rpx;
+  border-radius: 999rpx;
+  background: #1A1D22;
+  border: 1rpx solid #262A31;
+  font-size: 24rpx;
+  color: #9BA3AD;
+}
+
+.chip-active {
+  background: #FF4D2E;
+  border-color: #FF4D2E;
+  color: #fff;
+  font-weight: 600;
+}
+
+.nutri-row {
+  display: flex;
+  gap: 12rpx;
+}
+
+.nutri-item {
+  flex: 1;
+  background: #1A1D22;
+  border-radius: 16rpx;
+  padding: 20rpx 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nutri-value {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.nutri-label {
+  font-size: 22rpx;
+  color: #5C6570;
+  margin-top: 6rpx;
+}
+
+.add-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.divider-gap {
+  margin: 20rpx 0;
+}
+
+.assess-score {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12rpx;
+}
+
+.assess-score-num {
+  font-size: 64rpx;
+  font-weight: 700;
+}
+
+.assess-score-label {
+  font-size: 28rpx;
+  color: #5C6570;
+  margin-left: 8rpx;
+}
+
+.assess-summary {
+  font-size: 26rpx;
+  color: #9BA3AD;
+  margin-bottom: 12rpx;
+}
+
+.assess-item {
+  font-size: 24rpx;
+  color: #5C6570;
+  padding: 4rpx 0;
+}
+
+.empty-inline {
+  color: #5C6570;
+  font-size: 26rpx;
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #262A31;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-head {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.record-meal {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #F2F4F5;
+}
+
+.record-source {
+  font-size: 20rpx;
+  color: #FF4D2E;
+  background: rgba(14, 165, 233, 0.12);
+  padding: 2rpx 12rpx;
+  border-radius: 999rpx;
+}
+
+.record-food-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.record-food {
+  font-size: 22rpx;
+  color: #5C6570;
+  background: #1A1D22;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+}
+
+.record-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8rpx;
+  margin-left: 16rpx;
+}
+
+.record-cal {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #FF8A5C;
+}
+
+.record-del {
+  font-size: 22rpx;
+  color: #5C6570;
+}
+
+/* 弹窗 */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 自定义 tabBar 也是 z-index 999 且后于页面渲染，同级会把弹窗底部按钮盖住 */
+  z-index: 1000;
+  padding-bottom: calc(var(--tabbar-height, 112rpx) + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.modal {
+  width: 600rpx;
+  background: #14161A;
+  border: 1rpx solid #262A31;
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+}
+
+.modal-sub {
+  font-size: 24rpx;
+  color: #5C6570;
+  margin: 8rpx 0 24rpx;
+}
+
+.modal-btns {
+  margin-top: 32rpx;
+  gap: 16rpx;
+}
+
+/* 食材克数编辑面板 */
+.modal-ingredient {
+  width: 640rpx;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredient-scroll {
+  max-height: 48vh;
+  margin-top: 8rpx;
+}
+
+.ingredient-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #262A31;
+}
+
+.ingredient-info {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  flex: 1;
+  min-width: 0;
+}
+
+.ingredient-name {
+  font-size: 28rpx;
+  color: #E8EAED;
+}
+
+.ingredient-tag {
+  font-size: 20rpx;
+  color: #9BA3AD;
+  background: #262A31;
+  border-radius: 6rpx;
+  padding: 2rpx 12rpx;
+  flex-shrink: 0;
+}
+
+.ingredient-right {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  flex-shrink: 0;
+}
+
+.ingredient-input {
+  width: 120rpx;
+  height: 56rpx;
+  background: #1E2228;
+  border: 1rpx solid #2C323B;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #F2F4F5;
+}
+
+.ingredient-unit {
+  font-size: 24rpx;
+  color: #9BA3AD;
+}
+
+.ingredient-del {
+  font-size: 26rpx;
+  color: #6B7280;
+  padding: 8rpx;
+}

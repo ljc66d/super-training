@@ -1,0 +1,15 @@
+[Unit]
+Description=Super Training App Backend
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/super-training/backend
+ExecStart=/opt/super-training/venv/bin/python run.py --port 8000
+Restart=always
+RestartSec=3
+Environment=NODE_ENV=production
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

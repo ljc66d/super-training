@@ -1,0 +1,221 @@
+.login-page {
+  min-height: 100vh;
+  background: #0D0E10;
+  display: flex;
+  flex-direction: column;
+  padding: 120rpx 64rpx;
+  box-sizing: border-box;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 120rpx;
+}
+
+.brand-logo-img {
+  width: 240rpx;
+  height: 240rpx;
+  margin-bottom: 24rpx;
+}
+
+.brand-name {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+  letter-spacing: 4rpx;
+}
+
+.brand-slogan {
+  font-size: 26rpx;
+  color: #5C6570;
+  margin-top: 12rpx;
+}
+
+/* 头像 + 昵称（微信登录时可选填） */
+.profile-setup {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.avatar-btn {
+  flex: none;
+  width: 128rpx;
+  height: 128rpx;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  border-radius: 50%;
+  background: #1A1D22;
+  border: 2rpx dashed #262A31;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-btn::after {
+  border: none;
+}
+
+.avatar-btn-img {
+  width: 128rpx;
+  height: 128rpx;
+}
+
+.avatar-btn-tip {
+  font-size: 22rpx;
+  color: #5C6570;
+}
+
+.nickname-input {
+  flex: 1;
+}
+
+.btn-wechat {
+  background: #07C160;
+  color: #fff;
+}
+
+.wechat-icon {
+  margin-right: 12rpx;
+  font-size: 34rpx;
+}
+
+.divider-row {
+  display: flex;
+  align-items: center;
+  margin: 48rpx 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1rpx;
+  background: #262A31;
+}
+
+.divider-text {
+  margin: 0 24rpx;
+  font-size: 24rpx;
+  color: #5C6570;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.form-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32rpx;
+}
+
+.link {
+  font-size: 26rpx;
+  color: #FF4D2E;
+}
+
+/* 隐私协议勾选行 */
+.agreement-row {
+  margin-top: 60rpx;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12rpx;
+}
+
+.checkbox {
+  flex: none;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #5C6570;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rpx;
+}
+
+.checkbox-checked {
+  background: #FF4D2E;
+  border-color: #FF4D2E;
+}
+
+.checkbox-tick {
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 1;
+}
+
+.agreement-texts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1.6;
+}
+
+.agreement-plain {
+  font-size: 24rpx;
+  color: #5C6570;
+}
+
+.agreement-link {
+  font-size: 24rpx;
+  color: #FF4D2E;
+}
+
+/* 协议弹窗 */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.agreement-modal {
+  width: 640rpx;
+  max-height: 80vh;
+  background: #14161A;
+  border: 1rpx solid #262A31;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.agreement-modal-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #F2F4F5;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.agreement-scroll {
+  flex: 1;
+  max-height: 56vh;
+}
+
+.agreement-content {
+  font-size: 26rpx;
+  color: #9BA3AD;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.agreement-modal-btns {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
